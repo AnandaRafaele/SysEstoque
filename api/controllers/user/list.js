@@ -25,7 +25,7 @@ module.exports = {
       let query = {}
 
       results = await User.find(query).limit(rowsPerPage).skip(page * rowsPerPage).sort('createdAt DESC')
-      results = await sails.helpers.setResultsMeta.with({model: User, criteria: query, results, page, rowsPerPage})
+      results = await sails.helpers.setResultsMeta.with({ model: User, criteria: query, results, page, rowsPerPage })
 
       return exits.success(results)
     } catch (error) {

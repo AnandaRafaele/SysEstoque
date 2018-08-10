@@ -16,9 +16,10 @@ module.exports.routes = {
 
   /** USER ROUTES */
   'post /user/signup': 'user/signup',
-  'get /user/list': 'user/list',
+  'get /user': 'user/list',
   'patch /user/:id/status': 'user/status',
   'put /user/:id': 'user/update',
-
+  'patch /user/password' : 'user/password',
+  'post /user/login': 'user/login',
 
 };
