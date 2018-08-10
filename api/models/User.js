@@ -58,7 +58,17 @@ module.exports = {
     } catch (error) {
       return cb(error)
     }
+  },
+
+  beforeUpdate: function (values, cb) {
+    //cipher helper
+    sails.helpers.cipherHash(values.password).exec((err, hash) => {
+      if(err) return cb(err);
+      values.password = hash;
+      cb();
+    }) 
   }
+
 
 };
 

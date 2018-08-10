@@ -43,7 +43,7 @@ module.exports = {
       if (!this.req.headers.authorization) return exits.notFound();
 
       const user = await sails.helpers.currentUser(this.req.headers.authorization);
-      console.log(user)
+      
       const { oldPassword, newPassword } = inputs;
 
       const result = await sails.helpers.cipherCompare(oldPassword, user.password)

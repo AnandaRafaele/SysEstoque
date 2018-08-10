@@ -32,6 +32,7 @@ module.exports = {
 
         try {
             let match = await bcrypt.compare(password, userPassword)
+            console.log(password, userPassword)
             return exits.success(match)
         } catch (err) {
             return exits.serverError(err)

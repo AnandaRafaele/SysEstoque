@@ -51,6 +51,7 @@ module.exports = {
       if (!user) return exits.notFound()
 
       const passwordMatch = await sails.helpers.cipherCompare(password, user.password)
+      console.log(passwordMatch)
       if (!passwordMatch) return exits.wrongPassword()
 
       const token = await sails.helpers.authToken(user)
