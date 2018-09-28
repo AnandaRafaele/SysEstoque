@@ -6,105 +6,149 @@
     <!-- Viewport mobile tag for sensible mobile support -->
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-
-    <!--
-        Stylesheets and Preprocessors
-        ==============================
-
-        You can always bring in CSS files manually with `<link>` tags, or asynchronously
-        using a solution like AMD (RequireJS).  Or, if you like, you can take advantage
-        of Sails' conventional asset pipeline (boilerplate Gruntfile).
-
-        By default, stylesheets from your `assets/styles` folder are included
-        here automatically (between STYLES and STYLES END). Both CSS (.css) and LESS (.less)
-        are supported. In production, your styles will be minified and concatenated into
-        a single file.
-
-        To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
-        For example, here are a few things you could do:
-
-            + Change the order of your CSS files
-            + Import stylesheets from other directories
-            + Use a different or additional preprocessor, like SASS, SCSS or Stylus
-    -->
-
     <!--STYLES-->
+    <link rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/styles/importer.css">
+    <link rel="stylesheet" href="/styles/sb-admin.css">
     <!--STYLES END-->
   </head>
 
-  <body>
-    <%- body %>
-
-
-
-    <!--
-        Client-side Templates
-        ========================
-
-        HTML templates are important prerequisites of modern, rich client applications.
-        To work their magic, frameworks like React, Vue.js, Angular, Ember, and Backbone
-        require that you load these templates client-side.
-
-        By default, your Gruntfile is configured to automatically load and precompile
-        client-side JST templates in your `assets/templates` folder, then
-        include them here automatically (between TEMPLATES and TEMPLATES END).
-
-        To customize this behavior to fit your needs, just edit `tasks/pipeline.js`.
-        For example, here are a few things you could do:
-
-            + Import templates from other directories
-            + Use a different view engine (handlebars, dust, pug/jade, etc.)
-            + Internationalize your client-side templates using a server-side
-              stringfile before they're served.
-    -->
-
-    <!--TEMPLATES-->
+  <body class="fixed-nav sticky-footer bg-dark" id="page-top">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+        <a class="navbar-brand" href="index.html"> <i class="fas fa-dolly"></i>  Sys Estoque</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+            </ul>
+            <ul class="navbar-nav sidenav-toggler">
+                <li class="nav-item">
+                  <a class="nav-link text-center trocar" href="#" id="sidenavToggler" >
+                    <i class="fas fa-angle-left" id="iconTrade"></i>
+                  </a>
+                </li>
+              </ul>
+        </div>
+      </nav>
     
-    <!--TEMPLATES END-->
+      <div class="content-wrapper">
+          
+          <footer class="sticky-footer">
+            <div class="container">
+              <div class="text-center">
+                <small>Copyright ©</small>
+              </div>
+            </div>
+          </footer>
+          <!-- Scroll to Top Button-->
+          <a class="scroll-to-top rounded" href="#page-top">
+            <i class="fas fa-angle-up"></i>
+          </a>
+          <!-- Logout Modal-->
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Tem certeza ?</h5>
+                  <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                  </button>
+                </div>
+                <div class="modal-body">Selecione "Finalizar Sessão" abaixo se você estiver pronto para terminar sua sessão atual.</div>
+                <div class="modal-footer">
+                  <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                  <a class="btn btn-primary" href="#">Finalizar Sessão</a>
+                </div>
+              </div>
+            </div>
+          </div>
+      
+          <!-- MODAL ADICIONAR USUÁRIO -->
+          <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="addUser">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Adicionar Usuário</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form id="form_1" action="/create" method="POST">
+                    <div id="divAlert" class="text-center">
+                      
+                    </div>
+                    <br>
+      
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="fas fa-user"></i>
+                      </span>
+                      <input id="nameUser" name="name" class="form-control" placeholder="Nome Completo" type="text" autofocus required>
+                    </div>
+                    <br>
+                    <!-- form-group// -->
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="fas fa-envelope"></i>
+                      </span>
+                      <input name="email" class="form-control" placeholder="Endereço de Email" type="email" required>
+                    </div>
+                    <br>
+                    <!-- form-group// -->
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="fas fa-phone"></i>
+                      </span>
+                      <input name="phoneNumber" class="form-control" placeholder="Número do Telefone" type="text">
+                    </div>
+                    <br>
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="fas fa-lock"></i>
+                      </span>
+                      <input onkeyup="passwordCheck()" id="password" name="password" class="form-control" placeholder="Crie uma Senha" type="password" required>
+                    </div>
+                    <br>
+                    <div class="input-group">
+                      <span class="input-group-addon">
+                        <i class="fas fa-lock"></i>
+                      </span>
+                      <input onkeyup="passwordCheck()" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="Confirmar Senha" type="password" required>
+                    </div>
+      
+                    <br>
+                    <div id="divCheck">
+                      
+                    </div>
+                    <!-- form-group// -->
+                    <br>
+                    <div class="">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                      <button type="submit" class="btn btn-primary" id="addPasswordConfirm" onClick="return passwordVerification()">Salvar Usuário</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- FIM DO MODAL ADICIONAR USUÁRIO -->
+      
+          <div class="container">
+            <%- body %>
+          </div>
 
-
-    <!--
-        Server-side View Locals
-        ========================
-
-        Sometimes, it's convenient to get access to your server-side view locals from
-        client-side JavaScript.  This can improve page load times, remove the need for
-        extra AJAX requests, and make your client-side code easier to understand and
-        to maintain.  Sails provides a simple mechanism for accessing dynamic view
-        locals: the "exposeLocalsToBrowser()" view partial.
-
-        For more information on using this built-in feature, see:
-        https://sailsjs.com/docs/concepts/views/locals#?escaping-untrusted-data-using-exposelocalstobrowser
-
-    -->
-
-
-    <!--
-
-      Client-side Javascript
-      ========================
-
-      You can always bring in JS files manually with `script` tags, or asynchronously
-      on the client using a solution like AMD (RequireJS).  Or, if you like, you can
-      take advantage of Sails' conventional asset pipeline (boilerplate Gruntfile).
-
-      By default, files in your `assets/js` folder are included here
-      automatically (between SCRIPTS and SCRIPTS END).  Both JavaScript (.js) and
-      CoffeeScript (.coffee) are supported. In production, your scripts will be minified
-      and concatenated into a single file.
-
-      To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
-      For example, here are a few things you could do:
-
-          + Change the order of your scripts
-          + Import scripts from other directories
-          + Use a different preprocessor, like TypeScript
-
-    -->
-
+  
     <!--SCRIPTS-->
     <script src="/dependencies/sails.io.js"></script>
+    <script src="/js/fontawesome-all.js"></script>
+    <script src="/js/javaScript.js"></script>
+    <script src="/js/js.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/sb-admin.min.js"></script>
+    <script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/vendor/jquery/dist/jquery.min.js"></script>
     <!--SCRIPTS END-->
   </body>
 </html>

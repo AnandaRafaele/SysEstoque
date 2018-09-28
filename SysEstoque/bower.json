@@ -1,0 +1,25 @@
+{
+  "name": "sysestoque",
+  "description": "Sistema para controle de estoque destinado a UFCA",
+  "main": [
+    "app.js",
+    "less/bootstrap.less",
+    "dist/js/bootstrap.js"
+  ],
+  "authors": [
+    "Aquino"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/jonas-aquino/SysEstoque",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "assets/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^4.1.3",
+    "jquery": "^3.3.1"
+  }
+}
