@@ -1,5 +1,5 @@
 /**
- * User.js
+ * GoodsIssue.js
  *
  * @description :: A model definition.  Represents a database table/collection/etc.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
@@ -13,36 +13,17 @@ module.exports = {
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
 
-    name: {
+    goodsIssuedate: {
       type: 'string',
-      required: true
+      columnType: 'date'
     },
 
-    email: {
-      type: 'string',
-      required: true,
-      unique: true
-    },
-
-    phoneNumber: {
+    observation: {
       type: 'string',
     },
 
-    password: {
-      type: 'string',
-      required: true
-    },
-
-    status: {
-      type: 'string',
-      isIn: ['activated', 'disabled'],
-      defaultsTo: 'activated'
-    },
-
-    accessLevel: {
-      type: 'string',
-      isIn: ['employee', 'administrator'],
-      defaultsTo: 'employee'
+    requester: {
+      type: 'string'
     }
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
@@ -55,33 +36,6 @@ module.exports = {
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
 
   },
-
-  customToJSON: function () {
-    return _.omit(this, ['password'])
-  },
-
-  beforeCreate: async function (values, cb) {
-
-    // cipher helper
-    try {
-      const hash = await sails.helpers.cipherHash(values.password)
-      values.password = hash
-      cb()
-      
-    } catch (error) {
-      return cb(error)
-    }
-  },
-
-  beforeUpdate: function (values, cb) {
-    //cipher helper
-    sails.helpers.cipherHash(values.password).exec((err, hash) => {
-      if(err) return cb(err);
-      values.password = hash;
-      cb();
-    }) 
-  }
-
 
 };
 
