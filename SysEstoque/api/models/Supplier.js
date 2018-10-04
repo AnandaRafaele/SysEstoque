@@ -35,6 +35,10 @@ module.exports = {
 
     user: {
       model: 'user'
+    },
+
+    address: {
+      model: 'address'
     }
 
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗

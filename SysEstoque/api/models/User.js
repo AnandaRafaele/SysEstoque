@@ -35,13 +35,13 @@ module.exports = {
 
     status: {
       type: 'string',
-      isIn: ['activated', 'disabled'],
+      isIn: ['activated', 'disabled', 'blocked'],
       defaultsTo: 'activated'
     },
 
     accessLevel: {
       type: 'string',
-      isIn: ['employee', 'administrator'],
+      isIn: ['employee', 'administrator','supplier'],
       defaultsTo: 'employee'
     }
 

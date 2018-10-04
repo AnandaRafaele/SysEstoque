@@ -40,12 +40,19 @@ module.exports = {
 
     minStock: {
       type: 'number'
-    }
+    },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
     //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
 
+    goodsIssueItens: {
+      model: 'goodsIssueItens'
+    },
+
+    goodsReceipItens: {
+      model: 'goodsIssueItens'
+    }
 
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗

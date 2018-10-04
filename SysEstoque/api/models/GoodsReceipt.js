@@ -48,7 +48,11 @@ module.exports = {
     //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
 
     supplier: {
-      type: 'string'
+      model: 'supplier'
+    },
+
+    goodsReceipItens: {
+      model: 'goodsIssueItens'
     }
 
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
