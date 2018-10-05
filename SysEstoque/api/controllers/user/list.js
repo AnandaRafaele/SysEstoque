@@ -8,6 +8,10 @@ module.exports = {
 
 
   exits: {
+    success: {
+      responseType: 'view',
+      viewTemplatePath: 'pages/list'
+    },
     serverError: {
       description: 'server error',
       responseType: 'serverError'
@@ -25,9 +29,9 @@ module.exports = {
       let query = {}
 
       results = await User.find(query).limit(rowsPerPage).skip(page * rowsPerPage).sort('createdAt DESC')
-      results = await sails.helpers.setResultsMeta.with({ model: User, criteria: query, results, page, rowsPerPage })
+      // results = await sails.helpers.setResultsMeta.with({ model: User, criteria: query, results, page, rowsPerPage })
 
-      return exits.success(results)
+      return exits.success({results})
     } catch (error) {
       return exits.serverError()
     }

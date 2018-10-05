@@ -61,17 +61,20 @@ module.exports = {
   },
 
   beforeCreate: async function (values, cb) {
-
-    // cipher helper
-    try {
-      const hash = await sails.helpers.cipherHash(values.password)
-      values.password = hash
-      cb()
-      
-    } catch (error) {
-      return cb(error)
+    //cipher helper
+    if (values.password) {
+      try {
+        const hash = await sails.helpers.cipherHash(values.password);
+        values.password = hash;
+        cb();
+      } catch (error) {
+        return cb(error);
+      }
+    } else {
+      cb();
     }
   },
+
 
   beforeUpdate: function (values, cb) {
     //cipher helper

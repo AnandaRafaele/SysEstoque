@@ -10,5 +10,21 @@
 </head>
 <body>
     <h1>Testando</h1>
+    <table>
+        <thead>
+            <tr>
+                <td>Nome</td>
+                <td>Email</td>
+            </tr>
+        </thead>
+        <tbody>
+            <% results.forEach(function(result){%>
+                <tr>
+                    <td><%= result.name %></td>
+                    <td><%= result.email %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
 </body>
 </html>

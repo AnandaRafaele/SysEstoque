@@ -14,7 +14,8 @@ module.exports = {
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
 
     name: {
-      type: 'string'
+      type: 'string',
+      required: true
     },
 
     description: {
@@ -22,16 +23,18 @@ module.exports = {
     },
 
     brand: {
-      type: 'string'
+      type: 'string',
+      required: true
     },
 
     model: {
-      type: 'string'
+      type: 'string',
+      required: true
     },
 
-    // É type String mesmo?
     serialNumber: {
-      type: 'string'
+      type: 'number',
+      required: true
     },
 
     maxStock: {
@@ -39,7 +42,8 @@ module.exports = {
     },
 
     minStock: {
-      type: 'number'
+      type: 'number',
+      required: true
     },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗

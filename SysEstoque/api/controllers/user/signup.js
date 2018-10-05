@@ -64,6 +64,7 @@ module.exports = {
         phoneNumber,
         password
       }).fetch()
+      console.log(user)
 
       return exits.success(user);
     } catch (error) {
