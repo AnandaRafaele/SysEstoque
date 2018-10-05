@@ -51,8 +51,8 @@ module.exports = {
       model: 'supplier'
     },
 
-    goodsReceipItens: {
-      model: 'goodsIssueItens'
+    goodsReceiptItens: {
+      model: 'goodsReceiptIten'
     }
 
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗

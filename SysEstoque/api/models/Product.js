@@ -47,11 +47,11 @@ module.exports = {
     //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
 
     goodsIssueItens: {
-      model: 'goodsIssueItens'
+      model: 'goodsIssueIten'
     },
 
-    goodsReceipItens: {
-      model: 'goodsIssueItens'
+    goodsReceiptItens: {
+      model: 'goodsReceiptIten'
     }
 
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗

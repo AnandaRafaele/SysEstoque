@@ -31,12 +31,12 @@ module.exports = {
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
 
     products: {
-      via: 'goodsReceipItens',
+      via: 'goodsReceiptItens',
       collection: 'product'
     },
 
     goodsReceipts: {
-      via: 'goodsReceipItens',
+      via: 'goodsReceiptItens',
       collection: 'goodsReceipt'
     },
   },
