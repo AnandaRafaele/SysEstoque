@@ -26,6 +26,8 @@ module.exports = {
 
     phoneNumber: {
       type: 'string',
+      minLength: 10,
+      maxLength: 11,
     },
 
     password: {
@@ -41,7 +43,7 @@ module.exports = {
 
     accessLevel: {
       type: 'string',
-      isIn: ['employee', 'administrator','supplier'],
+      isIn: ['employee', 'administrator', 'supplier'],
       defaultsTo: 'employee'
     }
 
@@ -78,13 +80,18 @@ module.exports = {
 
   beforeUpdate: function (values, cb) {
     //cipher helper
-    sails.helpers.cipherHash(values.password).exec((err, hash) => {
-      if(err) return cb(err);
-      values.password = hash;
-      cb();
-    }) 
+
+    if (values.password) {
+
+      try {
+        const hash = sails.helpers.cipherHash(values.password);
+        values.password = hash;
+        cb();
+      } catch (error) {
+        return cb(err);
+      }
+    } else {
+      return cb()
+    }
   }
-
-
 };
-

@@ -11,6 +11,6 @@
 module.exports.policies = {
 
    //USER POLICIES
-   'user/password': ['isLogged']
+  //  'user/password': ['isLogged']
 
 };
