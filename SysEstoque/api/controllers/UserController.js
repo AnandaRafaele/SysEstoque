@@ -110,7 +110,7 @@ module.exports = {
         const password = req.body.password;
 
         try {
-            const user = await User.find({email});
+            const user = await User.findOne({email});
             console.log(user)
             if (!user) { return res.status(400).send({ error: 'Usuário não existe' }); }
 
@@ -119,7 +119,7 @@ module.exports = {
 
             const token = await sails.helpers.authToken(user);
             if (token) {
-                return res.redirect('/user/list', token)
+                return res.redirect('/user/list')
             } else {
                 return res.status(400).send({ error: 'Usuário não existe' });
             }
