@@ -11,19 +11,57 @@
 module.exports.routes = {
 
   '/': {
-    view: 'pages/homepage'
+    view: 'pages/login'
   },
 
-  /** USER ROUTES */
-  '/list':{
-    view: 'list'
+  '/user/list': {
+    controller: 'UserController',
+    action: 'list'
   },
 
-  'post /user/signup': 'user/signup',
-  'get /user': 'user/list',
-  'patch /user/:id/status': 'user/status',
-  'put /user/:id': 'user/update',
-  'patch /user/password' : 'user/password',
-  'post /user/login': 'user/login',
+  '/user/add': {
+    // controller: 'UserController',
+    // action: 'add'
+    view: 'pages/add'
+  },
 
+  '/user/delete/:id': {
+    controller: 'UserController',
+    action: 'delete'
+  },
+
+  '/user/edit/:id': {
+    controller: 'UserController',
+    action: 'edit'
+  },
+
+  '/user/update/:id': {
+    controller: 'UserController',
+    action: 'update'
+  },
+
+  '/user/create': {
+    controller: 'UserController',
+    action: 'create'
+  },
+
+  '/user/formPassword/:id': {
+    // controller: 'UserController',
+    // action: 'formPassword'
+    view: 'pages/formPassword'
+  },
+
+  '/user/password/:id': {
+    controller: 'UserController',
+    action: 'password'
+  },
+
+  '/user/login': {
+    controller: 'UserController',
+    action: 'login'
+  },
+
+  '/user': {
+    view: 'pages/login'
+  }
 };

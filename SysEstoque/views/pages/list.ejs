@@ -1,0 +1,44 @@
+<h1 class="display-4">Lista de Usuários</h1>
+
+<table border="1" class="table table-striped">
+        <thead>
+                <tr>
+                        <td>Nome</td>
+                        <td>Email</td>
+                        <td>Telefone</td>
+                        <td>Status</td>
+                        <td>Ações</td>
+                </tr>
+        </thead>
+
+        <tbody>
+                <% users.forEach(function(user){%>
+                <tr>
+                        <td>
+                                <%= user.name %>
+                        </td>
+                        <td>
+                                <%= user.email %>
+                        </td>
+                        <td>
+                                <%= user.phoneNumber %>
+                        </td>
+                        <td>
+                                <%= user.status %>
+                        </td>
+                        <td>
+                                <a href="/user/edit/<%= user.id %>">Editar</a> |
+
+                                <a href="/user/delete/<%= user.id %>">Excluir</a>
+                        </td>
+                </tr>
+                <% }) %>
+        </tbody>
+</table>
+
+<div class="container">
+        <a href="/" class="btn btn-primary">Voltar</a>
+        <a href="/user/add" class="btn btn-primary">
+                <img src="https://png.icons8.com/ios-glyphs/20/ffffff/plus-math.png">
+        </a>
+</div>

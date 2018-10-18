@@ -27,8 +27,9 @@ module.exports = {
 
     try {
       const hash = await bcrypt.hash(password, 10)
+
       return exits.success(hash)
-      
+
     } catch (error) {
       return exits.serverError();
     }

@@ -11,7 +11,7 @@ module.exports = async function (req, res, proceed) {
         
         const user = await User.findOne({id: userDecoded.id});
 
-        if(user && userDecoded.nivel == user.nivel) {
+        if(user && userDecoded.accessLever == user.accessLevel) {
             req.sender = user;
             return proceed();
         } else {

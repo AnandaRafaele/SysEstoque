@@ -9,6 +9,10 @@ module.exports = {
 
   attributes: {
 
+    //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
+    //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
+    //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
+
     name: {
       type: 'string',
       required: true
@@ -22,6 +26,8 @@ module.exports = {
 
     phoneNumber: {
       type: 'string',
+      minLength: 10,
+      maxLength: 11,
     },
 
     password: {
@@ -31,15 +37,24 @@ module.exports = {
 
     status: {
       type: 'string',
-      isIn: ['activated', 'disabled'],
+      isIn: ['activated', 'disabled', 'blocked'],
       defaultsTo: 'activated'
     },
 
     accessLevel: {
       type: 'string',
-      isIn: ['employee', 'administrator'],
+      isIn: ['employee', 'administrator', 'supplier'],
       defaultsTo: 'employee'
     }
+
+    //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
+    //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
+    //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
+
+
+    //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
+    //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
+    //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
 
   },
 
@@ -48,27 +63,35 @@ module.exports = {
   },
 
   beforeCreate: async function (values, cb) {
-
-    // cipher helper
-    try {
-      const hash = await sails.helpers.cipherHash(values.password)
-      values.password = hash
-      cb()
-      
-    } catch (error) {
-      return cb(error)
+    //cipher helper
+    if (values.password) {
+      try {
+        const hash = await sails.helpers.cipherHash(values.password);
+        values.password = hash;
+        cb();
+      } catch (error) {
+        return cb(error);
+      }
+    } else {
+      cb();
     }
   },
 
+
   beforeUpdate: function (values, cb) {
     //cipher helper
-    sails.helpers.cipherHash(values.password).exec((err, hash) => {
-      if(err) return cb(err);
-      values.password = hash;
-      cb();
-    }) 
+
+    if (values.password) {
+
+      try {
+        const hash = sails.helpers.cipherHash(values.password);
+        values.password = hash;
+        cb();
+      } catch (error) {
+        return cb(err);
+      }
+    } else {
+      return cb()
+    }
   }
-
-
 };
-
