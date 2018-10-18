@@ -15,8 +15,10 @@ module.exports.routes = {
   },
 
   /** USER ROUTES */
+  '/list':{
+    view: 'list'
+  },
 
- 
   'post /user/signup': 'user/signup',
   'get /user': 'user/list',
   'patch /user/:id/status': 'user/status',

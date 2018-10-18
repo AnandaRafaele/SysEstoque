@@ -20,26 +20,13 @@
       </tr>
     </thead>
     <tbody>
-      <% users.forEach(function(user){%>
+
         <tr>
           <!--<th scope="row">1</th>-->
           <td>
-            <%= user.name %>
+            <%= user.list %>
           </td>
-          <td>
-            <%= user.email %>
-          </td>
-          <td>
-            <%= user.phoneNumber %>
-          </td>
-          <td>
-            <% if(user.isActive == true || user.isActive=="true"){ %>
-              Ativado
-              <% } else { %>
-                Desativado
-                <% } %>
-          </td>
-          <td>
+         
 
             <span data-toggle="modal" data-target="#editUser">
               <button type="button" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="left" title="Editar Usuário">
@@ -57,7 +44,7 @@
             </form>
           </td>
         </tr>
-        <% }) %>
+        
     </tbody>
   </table>
 </div>
