@@ -1,44 +1,383 @@
-<h1 class="display-4">Lista de Usuários</h1>
+<!DOCTYPE html>
+<html>
 
-<table border="1" class="table table-striped">
-        <thead>
-                <tr>
-                        <td>Nome</td>
-                        <td>Email</td>
-                        <td>Telefone</td>
-                        <td>Status</td>
-                        <td>Ações</td>
-                </tr>
-        </thead>
+<head>
+        <title>SysEstoque</title>
 
-        <tbody>
-                <% users.forEach(function(user){%>
-                <tr>
-                        <td>
-                                <%= user.name %>
-                        </td>
-                        <td>
-                                <%= user.email %>
-                        </td>
-                        <td>
-                                <%= user.phoneNumber %>
-                        </td>
-                        <td>
-                                <%= user.status %>
-                        </td>
-                        <td>
-                                <a href="/user/edit/<%= user.id %>">Editar</a> |
+        <!-- Viewport mobile tag for sensible mobile support -->
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-                                <a href="/user/delete/<%= user.id %>">Excluir</a>
-                        </td>
-                </tr>
-                <% }) %>
-        </tbody>
-</table>
+        <!--STYLES-->
+        <link rel="stylesheet" href="/styles/bootstrap.min.css">
+        <link rel="stylesheet" href="/styles/importer.css">
+        <link rel="stylesheet" href="/styles/sb-admin.css">
+        <!--STYLES END-->
+</head>
 
-<div class="container">
-        <a href="/" class="btn btn-primary">Voltar</a>
-        <a href="/user/add" class="btn btn-primary">
-                <img src="https://png.icons8.com/ios-glyphs/20/ffffff/plus-math.png">
+<body class="fixed-nav sticky-footer bg-dark" id="page-top">
+
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
+                <a class="navbar-brand" href="index.html">
+                        <i class="fas fa-dolly"></i> Sys Estoque</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+                                <li class="nav-item" data-toggle="tooltip" data-placement="right" title="Painel de Controle">
+                                        <a class="nav-link" href="index.html">
+                                                <i class="fas fa-tachometer-alt"></i>
+                                                <span class="nav-link-text">Painel de Controle</span>
+                                        </a>
+                                </li>
+                                <li class="nav-item active" data-toggle="tooltip" data-placement="right" title="Usuários">
+                                        <a class="nav-link" href="pessoas.html">
+                                                <i class="fas fa-user"></i>
+                                                <span class="nav-link-text">Usuários</span>
+                                        </a>
+                                </li>
+                        </ul>
+
+                        <ul class="navbar-nav sidenav-toggler">
+                                <li class="nav-item">
+                                        <a class="nav-link text-center" id="sidenavToggler">
+                                                <i class="fas fa-angle-left" id="iconTrade"></i>
+                                        </a>
+                                </li>
+                        </ul>
+
+                        <ul class="navbar-nav ml-auto">
+                                <li class="nav-item">
+                                        <form class="form-inline my-2 my-lg-0 mr-lg-2">
+                                                <div class="input-group">
+                                                        <input class="form-control" type="text" placeholder="Buscar...">
+                                                        <span class="input-group-append">
+                                                                <button class="btn btn-primary" type="button">
+                                                                        <i class="fas fa-search"></i>
+                                                                </button>
+                                                        </span>
+                                                </div>
+                                        </form>
+                                </li>
+                                <li class="nav-item">
+                                        <a class="nav-link" data-toggle="modal" data-target="#exampleModal">
+                                                <i class="fas fa-sign-out-alt"></i> Finalizar Sessão</a>
+                                </li>
+                        </ul>
+                </div>
+        </nav>
+
+
+        <div class="content-wrapper">
+                <div class="container-fuild">
+                        <!-- Breadcrumbs-->
+                        <nav class="" aria-label="breadcrumb" role="navigation">
+                                <ol class="breadcrumb">
+                                        <li class="breadcrumb-item" aria-current="page">
+                                                <a href="index.html">Painel de Controle</a>
+                                        </li>
+                                        <li class="breadcrumb-item active" aria-current="page">Usuários</li>
+
+                                </ol>
+                        </nav>
+                </div>
+                <!-- LISTA DE USUÁRIOS -->
+                <div class="container-fuild">
+                        <div class="card">
+                                <div class="col col-xs-6 text-right float-right">
+                                        <button type="button" class="btn btn-sm btn-primary btn-create" data-toggle="modal" data-target="#addUser">
+                                                <i class="fas fa-user-plus"></i> Novo Usuário</button>
+                                </div>
+                                <h4 class="card-header">
+                                        <i class="fas fa-users"></i> Lista de Usuários</h4>
+                                <div class="card-body">
+                                        <table class="table table-responsive-lg">
+                                                <thead class="thead-dark">
+                                                        <tr>
+                                                                <!--
+                                                                <th scope="col">
+                                                                        <i class="fas fa-id-card-alt"></i> ID</th>
+                                                                -->
+                                                                <th scope="col">
+                                                                        <i class="fas fa-user"></i> Nome</th>
+                                                                <th scope="col">
+                                                                        <i class="fas fa-at"></i> E-mail</th>
+                                                                <th scope="col">
+                                                                        <i class="fas fa-phone"></i> Telefone</th>
+                                                                <th scope="col">
+                                                                        <i class="fas fa-toggle-on"></i> Situação</th>
+                                                                <th scope="col"></th>
+                                                        </tr>
+                                                </thead>
+                                                <tbody>
+                                                        <% users.forEach(function(user){%>
+                                                                <tr>
+                                                                        <!--<th scope="row">1</th>-->
+                                                                        <td>
+                                                                                <%= user.name %>
+                                                                        </td>
+                                                                        <td>
+                                                                                <%= user.email %>
+                                                                        </td>
+                                                                        <td>
+                                                                                <%= user.phoneNumber %>
+                                                                        </td>
+                                                                        <td>
+                                                                                <% if(user.isActive == true || user.isActive=="true"){ %>
+                                                                                        Ativado
+                                                                                        <% } else { %>
+                                                                                                Desativado
+                                                                                                <% } %>
+                                                                        </td>
+                                                                        <td>
+
+                                                                                <span data-toggle="modal" data-target="#editUser">
+                                                                                        <button type="button" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="left" title="Editar Usuário">
+                                                                                                <i class="fas fa-edit"></i>
+                                                                                        </button>
+                                                                                </span>
+
+                                                                                </span>
+                                                                                <form id="formSubmit" action="/user/delete/<%= user.id %>" method="POST" class="d-inline"></form>
+                                                                                <span>
+                                                                                        <button type="submit" class="btn btn-sm btn-danger deleteUser" data-toggle="tooltip" data-placement="right" title="Excluir Usuário">
+                                                                                                <i class="fas fa-trash-alt"></i>
+                                                                                        </button>
+                                                                                </span>
+                                                                                </form>
+                                                                        </td>
+                                                                </tr>
+                                                                <% }) %>
+                                                </tbody>
+                                        </table>
+                                </div>
+                        </div>
+
+                </div>
+                <!-- FIM DA LISTA DE USUÁRIOS -->
+        </div>
+
+        <!-- MODAL ADICIONAR USUÁRIO -->
+        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="addUser">
+                <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                                <div class="modal-header">
+                                        <h5 class="modal-title">Adicionar Usuário</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                        </button>
+                                </div>
+                                <div class="modal-body">
+                                        <form id="form_1" action="/user/create" method="POST">
+
+                                                <div id="divAlerta" class="text-center">
+
+                                                </div>
+                                                <br>
+                                                <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                                <i class="fas fa-user"></i>
+                                                        </span>
+                                                        <input name="" class="form-control" placeholder="Nome Completo" type="text" required>
+                                                </div>
+                                                <br>
+                                                <!-- form-group// -->
+                                                <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                                <i class="fas fa-envelope"></i>
+                                                        </span>
+                                                        <input name="" class="form-control" placeholder="Endereço de Email" type="email" required>
+                                                </div>
+                                                <br>
+                                                <!-- form-group// -->
+                                                <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                                <i class="fas fa-phone"></i>
+                                                        </span>
+                                                        <input name="" class="form-control" placeholder="Número do Telefone" id="telefone" type="text" required>
+                                                </div>
+                                                <br>
+                                                <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                                <i class="fas fa-lock"></i>
+                                                        </span>
+                                                        <input class="form-control" placeholder="Crie uma Senha" type="password" onkeyup="checarSenha()" id="Senha" required>
+                                                </div>
+                                                <!-- form-group// -->
+                                                <br>
+                                                <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                                <i class="fas fa-lock"></i>
+                                                        </span>
+                                                        <input class="form-control" placeholder="Confirmar Senha" type="password" onkeyup="checarSenha()" id="ConfSenha" required>
+                                                </div>
+
+                                                <br>
+                                                <div id="divCheck">
+
+                                                </div>
+
+                                                <!-- form-group// -->
+                                                <br>
+                                                <div class="">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                                        <button type="submit" class="btn btn-primary" onClick="return validarSenha()">Salvar Usuário</button>
+                                                </div>
+                                        </form>
+                                </div>
+                        </div>
+                </div>
+        </div>
+        <!-- FIM DO MODAL ADICIONAR USUÁRIO -->
+
+        <!-- MODAL ALTERAR USUÁRIO -->
+        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="editUser">
+                <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                                <div class="modal-header">
+                                        <h5 class="modal-title">Alterar Usuário</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                        </button>
+                                </div>
+                                <div class="modal-body">
+                                        <form id="form_1" action="" method="post">
+
+                                                <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                                <i class="fas fa-user"></i>
+                                                        </span>
+                                                        <input name="" class="form-control" placeholder="Nome Completo" type="text" required>
+                                                </div>
+                                                <br>
+                                                <!-- form-group// -->
+                                                <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                                <i class="fas fa-envelope"></i>
+                                                        </span>
+                                                        <input name="" class="form-control" placeholder="Endereço de Email" type="email" required>
+                                                </div>
+                                                <br>
+                                                <!-- form-group// -->
+                                                <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                                <i class="fas fa-phone"></i>
+                                                        </span>
+                                                        <input name="" class="form-control" placeholder="Número do Telefone" type="text" required>
+                                                </div>
+                                                <br>
+                                                <!-- form-group// -->
+                                                <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                                <i class="fas fa-user-cog"></i>
+                                                        </span>
+
+                                                        <select class="form-control">
+                                                                <option selected=""> Selecione a Situação:</option>
+                                                                <option>Ativo</option>
+                                                                <option>Inativo</option>
+                                                        </select>
+
+                                                </div>
+                                                <br>
+                                                <!-- form-group end.// -->
+                                                <div class="input-group">
+                                                        <span class="input-group-addon">
+                                                                <i class="fas fa-lock"></i>
+                                                        </span>
+                                                        <input class="form-control" placeholder="Crie uma Senha" type="password" required>
+                                                </div>
+
+                                                <!-- form-group// -->
+                                                <br>
+                                                <div class="">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                                                        <button type="submit" class="btn btn-success">Atualizar Usuário</button>
+                                                </div>
+                                        </form>
+                                </div>
+                        </div>
+                </div>
+        </div>
+        <!-- FIM DO MODAL ALTERAR USUÁRIO -->
+
+        <!-- MENSAGEM DE EXCLUSÃO DO USUÁRIO EM MODAL-->
+        <div class="modal fade" id="excluiUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                                <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Tem certeza ?</h5>
+                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                        </button>
+                                </div>
+                                <div class="modal-body">Deseja realmente excluir esse "Usuário" ?</div>
+                                <div class="modal-footer">
+                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                                        <button id="confirm-delete" type="button" class="btn btn-danger">Excluir Usuário</button>
+                                </div>
+                        </div>
+                </div>
+        </div>
+        <script src="/js/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript">
+
+
+
+                //EVENTO PARA ABRIR MODAL DE CONFIRMACAO DE EXCLUSAO
+                $('.deleteUser').click(function () {
+                        $('#excluiUser').modal({ show: true });
+                });
+
+                //EVENTO DE SUBMIT AO CLICAR EM CONFIRMAR EXCLUSAO
+                $("#confirm-delete").click(function () {
+                        $('#formSubmit').submit();
+                });
+
+        </script>
+
+        <!-- /.content-wrapper-->
+        <footer class="sticky-footer">
+                <div class="container">
+                        <div class="text-center">
+                                <small>Copyright ©</small>
+                        </div>
+                </div>
+        </footer>
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fas fa-angle-up"></i>
         </a>
-</div>
+        <!-- Logout Modal-->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                                <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Tem certeza ?</h5>
+                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">×</span>
+                                        </button>
+                                </div>
+                                <div class="modal-body">Selecione "Finalizar Sessão" abaixo se você estiver pronto para terminar sua sessão atual.</div>
+                                <div class="modal-footer">
+                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                                        <a class="btn btn-primary" href="#">Finalizar Sessão</a>
+                                </div>
+                        </div>
+                </div>
+        </div>
+        <!--SCRIPTS-->
+        <script src="/dependencies/sails.io.js"></script>
+        <script src="/vendor/jquery/dist/jquery.min.js"></script>
+        <script src="/js/popper.min.js"></script>
+        <script src="/js/js.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/fontawesome-all.js"></script>
+        <script src="/js/sb-admin.min.js"></script>
+        <script src="/js/javaScript.js"></script>
+        <!--SCRIPTS END-->
+
+</body>

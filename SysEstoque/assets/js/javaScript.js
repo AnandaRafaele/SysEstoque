@@ -1,12 +1,9 @@
 $(document).ready(function(){
-	/* MUDAR O BOTÃO DO SIDEMENU */
-	$('#sidenavToggler').click(function() {
-		$(this).find('#iconTrade').toggleClass('fas fa-angle-right fas fa-angle-left');
-	});
-	/* LIMPAR OS CAMPOS NO MODAL AO FECHAR */
-	$('.modal').on('hidden.bs.modal', function() {
-		$(this).find('input').val('');
-	});
+	//FUNCAO DE AUTOFOCUS NO MODAL
+        $('#addUser').on('shown.bs.modal', function () {
+          $('#nameUser').trigger('focus')
+        });
+
 /* FUNÇÃO PARA CHECAR SENHA */
 $("#Senha").keyup(checkPasswordMatch);
 $("#ConfSenha").keyup(checkPasswordMatch);

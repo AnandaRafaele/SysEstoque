@@ -1,154 +1,35 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>New Sails App</title>
 
-    <!-- Viewport mobile tag for sensible mobile support -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<head>
+  <title>New Sails App</title>
 
-    <!--STYLES-->
-    <link rel="stylesheet" href="/vendor/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/styles/importer.css">
-    <link rel="stylesheet" href="/styles/sb-admin.css">
-    <!--STYLES END-->
-  </head>
+  <!-- Viewport mobile tag for sensible mobile support -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <body class="fixed-nav sticky-footer bg-dark" id="page-top">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top" id="mainNav">
-        <a class="navbar-brand" href="index.html"> <i class="fas fa-dolly"></i>  Sys Estoque</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-            </ul>
-            <ul class="navbar-nav sidenav-toggler">
-                <li class="nav-item">
-                  <a class="nav-link text-center trocar" href="#" id="sidenavToggler" >
-                    <i class="fas fa-angle-left" id="iconTrade"></i>
-                  </a>
-                </li>
-              </ul>
-        </div>
-      </nav>
-    
-      <div class="content-wrapper">
-          
-          <footer class="sticky-footer">
-            <div class="container">
-              <div class="text-center">
-                <small>Copyright ©</small>
-              </div>
-            </div>
-          </footer>
-          <!-- Scroll to Top Button-->
-          <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-          </a>
-          <!-- Logout Modal-->
-          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Tem certeza ?</h5>
-                  <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                  </button>
-                </div>
-                <div class="modal-body">Selecione "Finalizar Sessão" abaixo se você estiver pronto para terminar sua sessão atual.</div>
-                <div class="modal-footer">
-                  <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                  <a class="btn btn-primary" href="#">Finalizar Sessão</a>
-                </div>
-              </div>
-            </div>
-          </div>
-      
-          <!-- MODAL ADICIONAR USUÁRIO -->
-          <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="addUser">
-            <div class="modal-dialog modal-lg" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title">Adicionar Usuário</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                  <form id="form_1" action="/create" method="POST">
-                    <div id="divAlert" class="text-center">
-                      
-                    </div>
-                    <br>
-      
-                    <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="fas fa-user"></i>
-                      </span>
-                      <input id="nameUser" name="name" class="form-control" placeholder="Nome Completo" type="text" autofocus required>
-                    </div>
-                    <br>
-                    <!-- form-group// -->
-                    <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="fas fa-envelope"></i>
-                      </span>
-                      <input name="email" class="form-control" placeholder="Endereço de Email" type="email" required>
-                    </div>
-                    <br>
-                    <!-- form-group// -->
-                    <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="fas fa-phone"></i>
-                      </span>
-                      <input name="phoneNumber" class="form-control" placeholder="Número do Telefone" type="text">
-                    </div>
-                    <br>
-                    <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="fas fa-lock"></i>
-                      </span>
-                      <input onkeyup="passwordCheck()" id="password" name="password" class="form-control" placeholder="Crie uma Senha" type="password" required>
-                    </div>
-                    <br>
-                    <div class="input-group">
-                      <span class="input-group-addon">
-                        <i class="fas fa-lock"></i>
-                      </span>
-                      <input onkeyup="passwordCheck()" id="confirmPassword" name="confirmPassword" class="form-control" placeholder="Confirmar Senha" type="password" required>
-                    </div>
-      
-                    <br>
-                    <div id="divCheck">
-                      
-                    </div>
-                    <!-- form-group// -->
-                    <br>
-                    <div class="">
-                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                      <button type="submit" class="btn btn-primary" id="addPasswordConfirm" onClick="return passwordVerification()">Salvar Usuário</button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- FIM DO MODAL ADICIONAR USUÁRIO -->
-      
-          <div class="container">
-            <%- body %>
-          </div>
+  <!--STYLES-->
+  <link rel="stylesheet" href="/styles/bootstrap.min.css">
+  <link rel="stylesheet" href="/styles/importer.css">
+  <link rel="stylesheet" href="/styles/sb-admin.css">
+  <!--STYLES END-->
+</head>
 
-  
+
+    <div class="container">
+      <%- body %>
+    </div>
+
+
     <!--SCRIPTS-->
     <script src="/dependencies/sails.io.js"></script>
-    <script src="/js/fontawesome-all.js"></script>
-    <script src="/js/javaScript.js"></script>
-    <script src="/js/js.js"></script>
-    <script src="/js/popper.min.js"></script>
-    <script src="/js/sb-admin.min.js"></script>
-    <script src="/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/js.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/fontawesome-all.js"></script>
+    <script src="/js/sb-admin.min.js"></script>
+    <script src="/js/javaScript.js"></script>
     <!--SCRIPTS END-->
-  </body>
+
+
 </html>

@@ -35,7 +35,7 @@ var cssFilesToInject = [
 
   // Bring in `.css` files for themes and style guides (e.g. Bootstrap, Foundation)
   'dependencies/**/*.css',
-  'vendor/bootstrap/dist/css/bootstrap.min.css',
+
 
   // All of the rest of your custom `.css` files will be injected here,
   // in no particular order.  To customize the ordering, add additional
@@ -74,10 +74,15 @@ var jsFilesToInject = [
   // All of the rest of your custom client-side js files will be injected here,
   // in no particular order.  To customize the ordering, add additional items
   // here, _above_ this one.
-  'js/**/*.js',
+  //'js/**/*.js',
 
-  'vendor/bootstrap/dist/js/bootstrap.min.js',
   'vendor/jquery/dist/jquery.min.js',
+  'js/popper.min.js',
+  'js/js.js',
+  'js/bootstrap.min.js',
+  'js/fontawesome-all.js',
+  'js/sb-admin.min.js',
+  'js/javaScript.js',
   
 ];
 
