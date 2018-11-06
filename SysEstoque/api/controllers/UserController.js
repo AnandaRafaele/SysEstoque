@@ -10,7 +10,7 @@ module.exports = {
         try {
             const users = await User.find();
 
-            return res.view('pages/list', { users: users });
+            return res.view('pages/User/list', { users: users });
         } catch (error) {
             return res.status(500).send({ error: 'Database error' });
         }
@@ -19,7 +19,7 @@ module.exports = {
     create: async function (req, res) {
 
         if (!req.body.password) { return res.status(400).send({ error: 'Alguns parâmetros estão faltando ser preenchidos' }) }
-
+    
         const name = req.body.name;
         const email = req.body.email;
         const phoneNumber = req.body.phoneNumber;
@@ -79,7 +79,7 @@ module.exports = {
     formPassword: async function (req, res) {
         try {
             const user = await User.findOne({ id: req.params.id })
-            return res.view('pages/formPassword', { user: user })
+            return res.view('pages/User/formPassword', { user: user })
         } catch (error) {
             sails.log(error)
             return res.status(500).send({ error: 'Database error' });
@@ -96,7 +96,7 @@ module.exports = {
             if (sails.helpers.cipherCompare(oldPassword, user.password)) {
                 await User.update({ id }, { password: newPassword });
 
-                return res.view('pages/list', { user: user });
+                return res.view('pages/User/list', { user: user });
             } else {
                 return res.status(400).send({ error: 'Bad Resquest' });
             }

@@ -2,9 +2,7 @@
   "name": "sysestoque",
   "description": "Sistema para controle de estoque destinado a UFCA",
   "main": [
-    "app.js",
-    "less/bootstrap.less",
-    "dist/js/bootstrap.js"
+    "app.js"
   ],
   "authors": [
     "Aquino"
@@ -19,7 +17,6 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "^3.3.1",
-    "bootstrap": "4.0.0"
+    "jquery": "^3.3.1"
   }
 }
