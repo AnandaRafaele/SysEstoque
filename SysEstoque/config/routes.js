@@ -9,6 +9,13 @@
  */
 
 module.exports.routes = {
+  '/product/add':{
+    view: 'pages/Product/add',
+  },
+  '/product/create':{
+    controller: 'ProductController',
+    action: 'create'
+  },
 
   '/': {
     view: 'pages/login'
