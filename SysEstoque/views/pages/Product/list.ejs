@@ -1,54 +1,59 @@
-<h4>Lista de Produtos</h4>
-<!--Nome, Descrição, Marca, modelo, Número de série-->
-<table>
-    <thead>
-        <tr>
-            <th>Nome </th>
-            <th>Descrição</th>
-            <th>Marca</th>
-            <th>Modelo</th>
-            <th>Número de Série</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% products.forEach(function(product){%>
-            <tr>
-            <!--<th scope="row">1</th>-->
-            <td>
-                <%= product.name %>
-             </td>
-            <td>
-                <%= product.description %>
-            </td>
-            <td>
-                <%= product.brand %>
-            </td>
-            <td>
-                <%= product.model %>
-            </td>
-            <td>
-                <%= product.serialNumber%>
-            </td>
-                       
-                        <td>
+<!-- LISTA DE PRODUTOS -->
+<div class="container-fuild">
+    <div class="card">
+            <h4 class="card-header">
+                    <i class="fas fa-users"></i> Lista de Produtos</h4>
+            <div class="card-body">
+                    <table class="table table-responsive-lg" border="1px">
+                            <thead class="thead-dark">
+                                    <tr>
+                                            <!--
+                                            <th scope="col">
+                                                    <i class="fas fa-id-card-alt"></i> ID</th>
+                                            -->
+                                            <th scope="col">
+                                                    <i class="fas fa-user"></i> Nome</th>
+                                            <th scope="col">
+                                                    <i class="fas fa-at"></i> Descrição</th>
+                                            <th scope="col">
+                                                    <i class="fas fa-phone"></i> Marca</th>
+                                            <th scope="col">
+                                                    <i class="fas fa-toggle-on"></i> Modelo</th>
+                                            <th scope="col">
+                                                    <i class="fas fa-toggle-on"></i> Número de Série</th>
+                                    </tr>
+                            </thead>
+                            <tbody>
+                                    <% products.forEach(function(product){%>
+                                            <tr>
+                                                    <!--<th scope="row">1</th>-->
+                                                    <td>
+                                                            <%= product.name %>
+                                                    </td>
+                                                    <td>
+                                                            <%= product.description %>
+                                                    </td>
+                                                    <td>
+                                                            <%= product.brand %>
+                                                    </td>
+                                                    <td>
+                                                        <%= product.model %>
+                                                    </td>
+                                                    <td>
+                                                            <%= product.serialNumber %>
+                                                    </td>
+                                                    <td>     
+                                                            <a href="/product/edit/<%= product.id%>"> Editar</a>
+                                                    </td>
+                                                    <td>
+                                                            <a href="http:/product/delete/<%= product.id%>"> Excluir</a>
+                                                    </td>
+                                            </tr>
+                                            <% }) %>
+                            </tbody>
+                    </table>
+            </div>
+    </div>
 
-                                <span data-toggle="modal" data-target="#editUser">
-                                        <button type="button" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="left" title="Editar Usuário">
-                                                <i class="fas fa-edit"></i>
-                                        </button>
-                                </span>
-
-                                </span>
-                                <form id="formSubmit" action="/user/delete/<%= user.id %>" method="POST" class="d-inline"></form>
-                                <span>
-                                        <button type="submit" class="btn btn-sm btn-danger deleteUser" data-toggle="tooltip" data-placement="right" title="Excluir Usuário">
-                                                <i class="fas fa-trash-alt"></i>
-                                        </button>
-                                </span>
-                                </form>
-                        </td>
-                </tr>
-                <% }) %>
-</tbody>
-
-</table>
+</div>
+<!-- FIM DA LISTA DE USUÁRIOS -->

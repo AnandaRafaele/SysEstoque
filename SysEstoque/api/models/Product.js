@@ -43,7 +43,9 @@ module.exports = {
 
     minStock: {
       type: 'number',
-      required: true
+      defaultsTo: 2,
+      //required: true,
+     
     },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
@@ -56,7 +58,7 @@ module.exports = {
 
     goodsReceiptItens: {
       model: 'goodsReceiptIten'
-    }
+    } 
 
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗

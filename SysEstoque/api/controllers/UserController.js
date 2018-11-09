@@ -47,7 +47,7 @@ module.exports = {
     },
 
     edit: async function (req, res) {
-
+    
         try {
             const user = await User.findOne({ id: req.params.id })
             return res.view('pages/User/edit', { user: user })

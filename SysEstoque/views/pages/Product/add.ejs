@@ -1,6 +1,4 @@
-<!--Nome, Descrição, Marca, modelo, Número de série-->
-
-<h1 class="display-4">Cadastro de Produtos</h1>
+<h1 class="display-4">Cadastro de Produto</h1>
 
 <form action="/product/create" method="POST">
     <div class="form-group">
@@ -20,14 +18,14 @@
 
     <div class="form-group">
         <label for="model">Modelo:</label>
-        <input type="text" name="model" class="form-control">
+        <input type="text" name="model" class="form-control" >
     </div>
 
     <div class="form-group">
-        <label for="serialNumber">Número de sério:</label>
-        <input type="text" name="serialNumber" class="form-control">
+        <label for="serialNumber">Número de Série:</label>
+        <input type="text" name="serialNumber" class="form-control" >
     </div>
 
     <input type="submit" value="Cadastrar" class="btn btn-success">
-    <a href="/product/list" class="btn btn-danger">Lista de produtos</a>
+    <a href="/product/list" class="btn btn-danger">Cancelar</a>
 </form>

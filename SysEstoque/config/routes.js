@@ -16,12 +16,27 @@ module.exports.routes = {
     controller: 'ProductController',
     action: 'create'
   },
-
   '/product/list':{
     controller: 'ProductController',
     action: 'list',
 
   },
+  '/product/edit/:id':{
+    controller: 'ProductController',
+    action: 'edit',
+  },
+  '/product/updade/:id':{
+    controller: 'ProductController',
+    action: 'update',
+  },
+  '/product/delete/:id':{
+    controller: 'ProductController',
+    action: 'delete',
+  },
+
+
+
+
 
   '/': {
     view: 'pages/login'
