@@ -55,7 +55,7 @@
         const product = {
             name,  description,  brand, model, serialNumber
         }
-        
+        //ta dando error aqui
         try {
             await Product.update({idProduct}, { name, description, brand, model, serialNumber});
             console.log(product.description);
