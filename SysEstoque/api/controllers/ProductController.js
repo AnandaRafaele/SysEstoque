@@ -9,10 +9,11 @@ module.exports = {
         const product = {
             name,  description,  brand, model, serialNumber
         }
-       
-        if (typeof product) {
-           return res.send('Preencha todos os campos!');
-       }
+       console.log('nome: ',name);
+        if (typeof(product) === null) {
+            res.send({error: 'Campos vazios'})
+        }
+     
         try {
             await Product.create({product});
             return res.send('Cadastrou o produto');
@@ -20,6 +21,15 @@ module.exports = {
             console.log(error);
             return res.send('Deu merda');
         }
-    }
+    },
+
+    list: async function (req, res){
+        try {
+            const products = await Product.find();
+            res.view('/pages/Product/list', {products: products});
+        } catch (error) {
+            res.send({error: 'Listagem dos Produtos'});
+        }
+    },
     
 }

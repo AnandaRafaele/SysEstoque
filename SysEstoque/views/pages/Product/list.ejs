@@ -1,0 +1,54 @@
+<h4>Lista de Produtos</h4>
+<!--Nome, Descrição, Marca, modelo, Número de série-->
+<table>
+    <thead>
+        <tr>
+            <th>Nome </th>
+            <th>Descrição</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Número de Série</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% products.forEach(function(product){%>
+            <tr>
+            <!--<th scope="row">1</th>-->
+            <td>
+                <%= product.name %>
+             </td>
+            <td>
+                <%= product.description %>
+            </td>
+            <td>
+                <%= product.brand %>
+            </td>
+            <td>
+                <%= product.model %>
+            </td>
+            <td>
+                <%= product.serialNumber%>
+            </td>
+                       
+                        <td>
+
+                                <span data-toggle="modal" data-target="#editUser">
+                                        <button type="button" class="btn btn-sm btn-info" data-toggle="tooltip" data-placement="left" title="Editar Usuário">
+                                                <i class="fas fa-edit"></i>
+                                        </button>
+                                </span>
+
+                                </span>
+                                <form id="formSubmit" action="/user/delete/<%= user.id %>" method="POST" class="d-inline"></form>
+                                <span>
+                                        <button type="submit" class="btn btn-sm btn-danger deleteUser" data-toggle="tooltip" data-placement="right" title="Excluir Usuário">
+                                                <i class="fas fa-trash-alt"></i>
+                                        </button>
+                                </span>
+                                </form>
+                        </td>
+                </tr>
+                <% }) %>
+</tbody>
+
+</table>

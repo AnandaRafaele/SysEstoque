@@ -127,7 +127,7 @@
                                                                                 <%= user.phoneNumber %>
                                                                         </td>
                                                                         <td>
-                                                                                <% if(user.isActive == true || user.isActive=="true"){ %>
+                                                                                <% if(user.status === "activated"){ %>
                                                                                         Ativado
                                                                                         <% } else { %>
                                                                                                 Desativado
@@ -245,13 +245,13 @@
                                         </button>
                                 </div>
                                 <div class="modal-body">
-                                        <form id="form_1" action="" method="post">
+                                        <form id="form_1" action="/user/edit/:<%= user.id%>" method="post">
 
                                                 <div class="input-group">
                                                         <span class="input-group-addon">
                                                                 <i class="fas fa-user"></i>
                                                         </span>
-                                                        <input name="" class="form-control" placeholder="Nome Completo" type="text" required>
+                                                        <input name="" class="form-control" placeholder="Nome Completo" type="text" required value="pioiioo">
                                                 </div>
                                                 <br>
                                                 <!-- form-group// -->

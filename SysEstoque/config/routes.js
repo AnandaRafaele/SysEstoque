@@ -17,6 +17,12 @@ module.exports.routes = {
     action: 'create'
   },
 
+  '/product/list':{
+    controller: 'ProductController',
+    action: 'list',
+
+  },
+
   '/': {
     view: 'pages/login'
   },
@@ -72,10 +78,6 @@ module.exports.routes = {
     view: 'pages/login'
   },
   
-  '/product/list':{
-    controller: 'ProductController',
-    action: 'list',
-
-  },
+ 
 
 };
