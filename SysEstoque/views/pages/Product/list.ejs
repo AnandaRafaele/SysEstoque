@@ -1,0 +1,56 @@
+<!-- LISTA DE PRODUTOS -->
+<div class="container-fuild">
+    <div class="card">
+            <h4 class="card-header">
+                    <i class="fas fa-users"></i> Lista de Produtos</h4>
+            <div class="card-body">
+                    <table class="table table-responsive-lg" border="1px">
+                            <thead class="thead-dark">
+                                    <tr>
+                                            <!--
+                                            <th scope="col">
+                                                    <i class="fas fa-id-card-alt"></i> ID</th>
+                                            -->
+                                            <th scope="col">
+                                                    <i class="fas fa-user"></i> Nome</th>
+                                            <th scope="col">
+                                                    <i class="fas fa-at"></i> Descrição</th>
+                                            <th scope="col">
+                                                    <i class="fas fa-phone"></i> Marca</th>
+                                            <th scope="col">
+                                                    <i class="fas fa-toggle-on"></i> Modelo</th>
+                                            <th scope="col">
+                                                    <i class="fas fa-toggle-on"></i> Número de Série</th>
+                                    </tr>
+                            </thead>
+                            <tbody>
+                                    <% products.forEach(function(product){%>
+                                            <tr>
+                                                    <!--<th scope="row">1</th>-->
+                                                    <td>
+                                                            <%= product.name %>
+                                                    </td>
+                                                    <td>
+                                                            <%= product.description %>
+                                                    </td>
+                                                    <td>
+                                                            <%= product.brand %>
+                                                    </td>
+                                                    <td>
+                                                        <%= product.model %>
+                                                    </td>
+                                                    <td>
+                                                            <%= product.serialNumber %>
+                                                    </td>
+                                                    <td>
+                                                            <a href="/product/edit/<%= product.id%>"> Editar</a>
+                                                    </td>
+                                            </tr>
+                                            <% }) %>
+                            </tbody>
+                    </table>
+            </div>
+    </div>
+
+</div>
+<!-- FIM DA LISTA DE USUÁRIOS -->

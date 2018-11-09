@@ -10,7 +10,7 @@ module.exports = {
         try {
             const users = await User.find();
 
-            return res.view('pages/User/list', { users: users });
+            return res.view('pages/User/list', { users: users    });
         } catch (error) {
             return res.status(500).send({ error: 'Database error' });
         }
@@ -47,10 +47,10 @@ module.exports = {
     },
 
     edit: async function (req, res) {
-
+    
         try {
             const user = await User.findOne({ id: req.params.id })
-            return res.view('pages/edit', { user: user })
+            return res.view('pages/User/edit', { user: user })
         } catch (error) {
             sails.log(error)
             return res.status(500).send({ error: 'Database error' });
