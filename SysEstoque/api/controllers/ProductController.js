@@ -43,7 +43,7 @@
        
         try {
             await Product.update({id: req.params.id},{name, description, brand, model, serialNumber});
-            return res.view('pages/Product/list', {products: await Product.find()});
+            return res.redirect('/product/list');
         } catch (error) {
             console.log(error);
             return res.send({error: 'Problemas ao atualizar o produto'});
@@ -53,7 +53,7 @@
     delete: async function(req, res){
         try {
             await Product.destroy({id: req.params.id});
-            return res.view('pages/Product/list', {products: await Product.find()});
+            return res.redirect('/product/list');
         } catch (error) {
             console.log(error);
             return res.send({error: 'Problemas ao deletar um produto'});
