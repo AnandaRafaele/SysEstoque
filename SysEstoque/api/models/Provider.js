@@ -13,15 +13,15 @@ attributes:{
         unique: true,
         //testar isso aqui https://www.npmjs.com/package/cpf_cnpj
         custom: function(value){
-            //const cnpj = require("cpf_cnpj").cnpj;
-            //console.log(cnpj.isValid(value));
+            const cnpj = require("cpf_cnpj").CNPJ;
+            return cnpj.isValid(value);
         },
     },
     stateRegistration:{
         type: 'number',
         required: true,
         unique: true,
-        //testar isso aqui https://www.npmjs.com/package/br-validations
+        //testar isso a qui https://www.npmjs.com/package/br-validations
         custom: function(value){
         },
     },
