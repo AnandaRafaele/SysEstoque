@@ -1,42 +1,33 @@
+<!--script para habilitar o select da cidade -->
 
-<!-- LISTA DE PRODUTOS -->
+<head>
+        <script src="jquery-3.3.1.min.js"></script>
+</head>
+<script type="text/javascript">
+        $( "#state" ).click(function() {
+  alert( "Handler for .click() called." );
+});
+
+</script>
 <div class="container-fuild">
     <div class="card">
             <h4 class="card-header">
                     <i class="fas fa-users"></i> Lista de Produtos</h4>
             <div class="card-body">
+                    <label for="State">Estado:</label>
+                   <select name="state" id="state">
+                           <%ufs.forEach(function(uf){%>
+                                <option value="<%=uf.id%>" ><%=uf.nome%></option>
+                           <%})%>
+                   </select>
+                   <label for="city">Cidade:</label>
+                   <select name="city" id="city" disabled="disabled">
+                        <%ufs.forEach(function(uf){%>
+                                <option value="<%=uf.id%>"><%=uf.nome%></option>
+                        <%})%>
+                   </select>
                    
-                    <table class="table table-responsive-lg" border="1px">
-                            <thead class="thead-dark">
-                                    <tr>
-                                            <!--
-                                            <th scope="col">
-                                                    <i class="fas fa-id-card-alt"></i> ID</th>
-                                            -->
-                                        <th scope="col">
-                                                <i class="fas fa-user"></i> Nome
-                                        </th>
-                                            
-                                    </tr>
-                            </thead>
-                            <tbody>
-                                    
-                                    <% ufs.forEach(function(uf){%>
-                                            <tr>
-                                                    <!--<th scope="row">1</th>-->
-                                                    <td>
-                                                            <%= uf.nome %>
-                                                    </td>
-                                                    <td>     
-                                                            <a href="/product/edit/"> Editar</a>
-                                                    </td>
-                                                    <td>
-                                                            <a href="http:/product/delete/>"> Excluir</a>
-                                                    </td>
-                                            </tr>
-                                            <% }) %>
-                            </tbody>
-                    </table>
+                   
             </div>
     </div>
 
