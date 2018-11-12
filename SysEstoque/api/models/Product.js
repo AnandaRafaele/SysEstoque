@@ -56,6 +56,10 @@ module.exports = {
 
     goodsReceiptItens: {
       model: 'goodsReceiptIten'
+    },
+
+    user: {
+      model: 'user'
     }
 
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗

@@ -8,6 +8,7 @@
                         <td>Telefone</td>
                         <td>Status</td>
                         <td>Ações</td>
+                        <td>Nível de Acesso</td>
                 </tr>
         </thead>
 
@@ -27,6 +28,9 @@
                                 <%= user.status %>
                         </td>
                         <td>
+                                <%= user.accessLevel %>
+                        </td>
+                        <td>
                                 <a href="/user/edit/<%= user.id %>">Editar</a> |
 
                                 <a href="/user/delete/<%= user.id %>">Excluir</a>
@@ -38,7 +42,5 @@
 
 <div class="container">
         <a href="/" class="btn btn-primary">Voltar</a>
-        <a href="/user/add" class="btn btn-primary">
-                <img src="https://png.icons8.com/ios-glyphs/20/ffffff/plus-math.png">
-        </a>
+        <a href="/user/add">Cadastrar</a>
 </div>

@@ -10,8 +10,10 @@
 
 module.exports.routes = {
 
+  /** USER ROUTES */
+
   '/': {
-    view: 'pages/login'
+    view: 'user/login'
   },
 
   '/user/list': {
@@ -20,9 +22,7 @@ module.exports.routes = {
   },
 
   '/user/add': {
-    // controller: 'UserController',
-    // action: 'add'
-    view: 'pages/add'
+    view: 'user/add'
   },
 
   '/user/delete/:id': {
@@ -48,7 +48,7 @@ module.exports.routes = {
   '/user/formPassword/:id': {
     // controller: 'UserController',
     // action: 'formPassword'
-    view: 'pages/formPassword'
+    view: 'user/formPassword'
   },
 
   '/user/password/:id': {
@@ -62,6 +62,12 @@ module.exports.routes = {
   },
 
   '/user': {
-    view: 'pages/login'
-  }
+    view: 'user/login'
+  },
+
+  /** PRODUCT ROUTES */
+
+  '/product/add': {
+    view: 'product/add'
+  },
 };

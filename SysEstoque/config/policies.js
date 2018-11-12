@@ -12,6 +12,6 @@ module.exports.policies = {
 
    //USER POLICIES
   // 'user/list': ['isLogged']
-  'user/password': ['isLogged']
+  'index': ['isLogged']
 
 };
