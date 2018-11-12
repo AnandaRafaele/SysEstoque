@@ -43,7 +43,7 @@ module.exports = {
 
     accessLevel: {
       type: 'string',
-      isIn: ['employee', 'administrator', 'supplier'],
+      isIn: ['employee', 'administrator'],
       defaultsTo: 'employee'
     }
 

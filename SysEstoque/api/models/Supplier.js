@@ -29,6 +29,23 @@ module.exports = {
       type: 'string'
     },
 
+    phoneNumber: {
+      type: 'string',
+      minLength: 10,
+      maxLength: 11,
+    },
+
+    email: {
+      type: 'string',
+      required: true,
+      unique: true
+    },
+
+    representative: {
+      type: 'string',
+      required: true,
+    },
+
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
     //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝

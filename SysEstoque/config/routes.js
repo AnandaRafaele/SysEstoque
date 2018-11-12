@@ -10,29 +10,9 @@
 
 module.exports.routes = {
 
-  /** USER ROUTES */
-
-  '/': {
-    view: 'user/login'
-  },
-
-  '/user/list': {
-    controller: 'UserController',
-    action: 'list'
-  },
-
-  '/user/add': {
-    view: 'user/add'
-  },
-
   '/user/delete/:id': {
     controller: 'UserController',
     action: 'delete'
-  },
-
-  '/user/edit/:id': {
-    controller: 'UserController',
-    action: 'edit'
   },
 
   '/user/update/:id': {
@@ -40,15 +20,14 @@ module.exports.routes = {
     action: 'update'
   },
 
-  '/user/create': {
+  '/user/update/:id': {
     controller: 'UserController',
-    action: 'create'
+    action: 'update'
   },
 
-  '/user/formPassword/:id': {
-    // controller: 'UserController',
-    // action: 'formPassword'
-    view: 'user/formPassword'
+  '/user/signup': {
+    controller: 'UserController',
+    action: 'signup'
   },
 
   '/user/password/:id': {
@@ -61,13 +40,4 @@ module.exports.routes = {
     action: 'login'
   },
 
-  '/user': {
-    view: 'user/login'
-  },
-
-  /** PRODUCT ROUTES */
-
-  '/product/add': {
-    view: 'product/add'
-  },
 };

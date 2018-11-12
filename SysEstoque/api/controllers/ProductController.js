@@ -8,34 +8,25 @@
 module.exports = {
 
   create: async function (req, res) {
-    const name = req.body.name;
-    const description = req.body.description;
-    const brand = req.body.brand;
-    const model = req.body.model;
-    const serialNumber = req.body.serialNumber;
-    const maxStock = req.body.maxStock;
-    const minStock = req.body.minStock;
-    const goodsIssueItens = req.body.goodsIssueItens;
-    const goodsReceiptItens = req.body.goodsReceiptItens;
+    const params = req.body;
 
-    try {
-      const user = req.sender;
-      if (!user) { return res.status(404).send({ error: 'O usuário não tem permissão para acessar esta área' }) }
+    try {  
 
-      await Product.create({
-        name,
-        description,
-        brand,
-        model,
-        serialNumber,
-        maxStock,
-        minStock,
-        goodsIssueItens,
-        goodsReceiptItens,
-        user,
-      }).fetch();
+      let productToCreate = {
+        name: params.name,
+        description: params.description,
+        brand: params.brand,
+        model: params.model,
+        serialNumber: params.serialNumber,
+        maxStock: params.maxStock,
+        minStock: params.minStock,
+        goodsIssueItens: params.goodsIssueItens,
+        goodsReceiptItens: params.goodsReceiptItens,
+      }
 
-      return res.redirect('/user/list')
+     await Product.create(productToCreate)
+
+      return res.redirect('/product/list')
     } catch (error) {
       return res.status(500).send({ error })
     }
