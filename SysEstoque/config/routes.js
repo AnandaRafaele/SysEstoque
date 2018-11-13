@@ -10,6 +10,8 @@
 
 module.exports.routes = {
 
+  //USER ROUTES
+
   '/user/delete/:id': {
     controller: 'UserController',
     action: 'delete'
@@ -39,5 +41,36 @@ module.exports.routes = {
     controller: 'UserController',
     action: 'login'
   },
+
+  //SUPPLIER ROUTES
+
+  '/supplier/add': {
+    controller: 'SupplierController',
+    action: 'create'
+  },
+
+  '/supplier/list': {
+    controller: 'SupplierController',
+    action: 'list'
+  },
+  
+  '/supplier/update': {
+    controller: 'SupplierController',
+    action: 'update'
+  },
+
+  //STATE ROUTES
+
+  '/state': {
+    controller: 'StateController',
+    action: 'create'
+  },
+
+  //CITY ROUTES
+
+  '/city': {
+    controller: 'CityController',
+    action: 'create'
+  }
 
 };

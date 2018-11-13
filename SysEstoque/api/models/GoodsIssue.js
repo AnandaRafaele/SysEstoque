@@ -32,6 +32,10 @@ module.exports = {
 
     goodsIssueItens: {
       model: 'goodsIssueIten'
+    },
+
+    supplier: {
+      model: 'supplier'
     }
 
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗

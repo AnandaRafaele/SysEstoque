@@ -24,9 +24,9 @@ module.exports = {
         goodsReceiptItens: params.goodsReceiptItens,
       }
 
-     await Product.create(productToCreate)
+     const product = await Product.create(productToCreate)
 
-      return res.redirect('/product/list')
+      return res.status(201).json(product)
     } catch (error) {
       return res.status(500).send({ error })
     }

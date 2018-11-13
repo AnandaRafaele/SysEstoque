@@ -29,10 +29,21 @@ module.exports = {
         representative: objSupplier.representative,
       }
 
-      const createdAddress = await Address.create(addressToCreate);
+      const createdAddress = await Address.create(addressToCreate).fetch();
+      console.log(createdAddress)
       supplierToCreate.address = createdAddress.id;
-      const supplier = await Supplier.create(supplier)
+      const supplier = await Supplier.create(supplierToCreate).fetch();
       return res.status(201).json(supplier)
+    } catch (error) {
+      sails.log(error)
+      return res.status(404).send({ error: 'Database error' })
+    }
+  },
+
+  list: async function (req, res) {
+    try {
+      const suppliers = await Supplier.find();
+      return res.status(201).json(suppliers)
     } catch (error) {
       return res.status(404).send({ error: 'Database error' })
     }

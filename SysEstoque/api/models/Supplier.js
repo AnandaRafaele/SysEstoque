@@ -56,12 +56,16 @@ module.exports = {
 
     address: {
       model: 'address'
-    }
+    },
 
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
 
+    goodsIssues: {
+      collection: "goodsIssue",
+      via: "supplier"
+    }
   },
 
 };
