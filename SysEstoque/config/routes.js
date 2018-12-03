@@ -21,7 +21,6 @@ module.exports.routes = {
     controller: 'UserController',
     action: 'update'
   },
-
   '/user/update/:id': {
     controller: 'UserController',
     action: 'update'
@@ -31,12 +30,10 @@ module.exports.routes = {
     controller: 'UserController',
     action: 'signup'
   },
-
   '/user/password/:id': {
     controller: 'UserController',
     action: 'password'
   },
-
   '/user/login': {
     controller: 'UserController',
     action: 'login'

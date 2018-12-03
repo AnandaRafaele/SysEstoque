@@ -48,18 +48,53 @@ module.exports = {
         }
     },
 
+<<<<<<< HEAD
+=======
+    edit: async function (req, res) {
+    
+        try {
+            const user = await User.findOne({ id: req.params.id })
+            return res.view('pages/User/edit', { user: user })
+        } catch (error) {
+            sails.log(error)
+            return res.status(500).send({ error: 'Database error' });
+        }
+
+    },
+
+>>>>>>> 8562edb7768e5de8fcc6b07d395151f51157e0f3
     update: async function (req, res) {
 
         const params = req.body;
         let userId = req.params.id;
 
+<<<<<<< HEAD
         if (!userId) {
             return res.status(400).send({ error: 'Faltando parâmetros' })
+=======
+    formPassword: async function (req, res) {
+        try {
+            const user = await User.findOne({ id: req.params.id })
+            return res.view('pages/User/formPassword', { user: user })
+        } catch (error) {
+            sails.log(error)
+            return res.status(500).send({ error: 'Database error' });
+>>>>>>> 8562edb7768e5de8fcc6b07d395151f51157e0f3
         }
 
         try {
+<<<<<<< HEAD
             const user = await User.update({id: userId}, params).fetch()
             return res.status(201).json(user)
+=======
+            if (sails.helpers.cipherCompare(oldPassword, user.password)) {
+                await User.update({ id }, { password: newPassword });
+
+                return res.view('pages/User/list', { user: user });
+            } else {
+                return res.status(400).send({ error: 'Bad Resquest' });
+            }
+>>>>>>> 8562edb7768e5de8fcc6b07d395151f51157e0f3
         } catch (error) {
             return res.status(500).send({ error: 'Database error' });
         }

@@ -20,12 +20,12 @@ module.exports = async function (req, res, proceed) {
                 message: 'Você precisa fazer o login para prosseguir com essa ação.'
             });
         }
-        
-    
     } else {
          //SocketService.invalidCredentials(req);
 		return res.forbidden({
 			message: 'Você precisa fazer o login para prosseguir com essa ação.'
 		});
     }
+   
+
 }

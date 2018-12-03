@@ -16,6 +16,9 @@ module.exports = {
     name: {
       type: 'string'
     },
+    uf:{
+      type:'string'
+    }
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗

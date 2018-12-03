@@ -1,0 +1,21 @@
+{
+  "name": "sysestoque",
+  "homepage": "https://github.com/TiagoJunior99/SysEstoque-1",
+  "authors": [
+    "Tiago Jr"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "^3.3.1"
+  }
+}

@@ -1,33 +1,7 @@
-<ol class="breadcrumb">
-    <li class="breadcrumb-item">
-        <a href="/user/list">Usuários</a>
-    </li>
-    <li class="breadcrumb-item">Cadastrar</li>
-</ol>
+<form action="/city/create" method="POST">
+    <label for="name">Nome da cidade:</label>
+    <input type="text" name="name" required>
 
-<h1 class="display-4">Cadastro de Usuários</h1>
+    <input type="submit" value="Cadastrar">
 
-<form action="/user/create" method="POST">
-    <div class="form-group">
-        <label for="name">Name:</label>
-        <input type="text" name="name" class="form-control" required>
-    </div>
-
-    <div class="form-group">
-        <label for="email">Email:</label>
-        <input type="email" name="email" class="form-control" required>
-    </div>
-
-    <div class="form-group">
-        <label for="phoneNumber">Telefone:</label>
-        <input type="text" name="phoneNumber" class="form-control">
-    </div>
-
-    <div class="form-group">
-        <label for="password">Senha:</label>
-        <input type="password" name="password" class="form-control" required>
-    </div>
-
-    <input type="submit" value="Cadastrar" class="btn btn-success">
-    <a href="/user/list" class="btn btn-danger">Cancelar</a>
 </form>

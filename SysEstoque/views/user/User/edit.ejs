@@ -1,0 +1,38 @@
+<ol class="breadcrumb">
+    <li class="breadcrumb-item">
+        <a href="/user/list">Usuários</a>
+    </li>
+    <li class="breadcrumb-item">Alterar</li>
+</ol>
+
+<h1 class="display-4">Alteração de Usuários</h1>
+
+<form action="/user/update/<%= user.id%>" method="POST">
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" name="name" class="form-control" value="<%= user.name%>">
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" name="email" class="form-control" value="<%= user.email%>">
+    </div>
+
+    <div class="form-group">
+        <label for="phoneNumber">Telefone:</label>
+        <input type="text" name="phoneNumber" class="form-control" value="<%= user.phoneNumber%>">
+    </div>
+
+    <div class="form-group">
+        <select name="status">
+            <option selected="" value="<%= user.status %>">Selecione</option>
+            <option value="activated">Ativado</option>
+            <option value="blocked">Bloqueado</option>
+            <option value="disabled">Desativado</option>
+        </select>
+        <input type="text" value="<%= user.status%>" readonly>
+    </div>
+
+    <button type="submit">Alterar</button>
+    <a href="/user/list" class="btn btn-danger mt-4">Cancelar</a>
+</form>
