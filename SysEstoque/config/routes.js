@@ -12,7 +12,7 @@ module.exports.routes = {
 
   //USER ROUTES
 
-  '/user/delete/:id': {
+  'post /user/delete/:id': {
     controller: 'UserController',
     action: 'delete'
   },
@@ -38,6 +38,10 @@ module.exports.routes = {
     controller: 'UserController',
     action: 'login'
   },
+  '/user/list': {
+    controller: 'UserController',
+    action: 'list'
+  },
 
   //SUPPLIER ROUTES
 
@@ -50,7 +54,7 @@ module.exports.routes = {
     controller: 'SupplierController',
     action: 'list'
   },
-  
+
   '/supplier/update': {
     controller: 'SupplierController',
     action: 'update'
@@ -68,6 +72,22 @@ module.exports.routes = {
   '/city': {
     controller: 'CityController',
     action: 'create'
-  }
+  },
+
+  // VIEWS
+
+  'get /': {
+    view: 'login',
+  },
+
+  '/user/dashboard': {
+    controller: 'UserController',
+    action: 'list',
+  },
+
+  '/product/dashboard': {
+    view: 'product/dashboardProduct',
+  },
+
 
 };

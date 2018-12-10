@@ -4,7 +4,7 @@ module.exports = {
     list: async function (req, res) {
         try {
             const users = await User.find();
-            return res.status(201).json(users);
+            return res.view('user/list', {users: users, layout: 'layouts/layout'})
         } catch (error) {
             return res.status(500).send({ error: 'Database error' });
         }
@@ -12,6 +12,7 @@ module.exports = {
 
     signup: async function (req, res) {
         const params = req.body;
+        console.log(params)
         try {
 
             if (!params.password) {
@@ -31,7 +32,7 @@ module.exports = {
             }
 
             const user = await User.create(userToCreate).fetch();
-            return res.status(201).json(user)
+            return res.redirect('/user/dashboard')
         } catch (error) {
             sails.log(error)
             return res.status(500).send({ error: 'Database error' });
@@ -42,59 +43,24 @@ module.exports = {
 
         try {
             await User.destroy({ id: req.params.id })
-            return res.status(500).send({ message: 'Usuário excluído com sucesso' })
+            return res.redirect('/user/dashboard')
         } catch (error) {
             return res.status(500).send({ error: 'Database error' });
         }
     },
 
-<<<<<<< HEAD
-=======
-    edit: async function (req, res) {
-    
-        try {
-            const user = await User.findOne({ id: req.params.id })
-            return res.view('pages/User/edit', { user: user })
-        } catch (error) {
-            sails.log(error)
-            return res.status(500).send({ error: 'Database error' });
-        }
-
-    },
-
->>>>>>> 8562edb7768e5de8fcc6b07d395151f51157e0f3
     update: async function (req, res) {
 
         const params = req.body;
         let userId = req.params.id;
 
-<<<<<<< HEAD
         if (!userId) {
             return res.status(400).send({ error: 'Faltando parâmetros' })
-=======
-    formPassword: async function (req, res) {
-        try {
-            const user = await User.findOne({ id: req.params.id })
-            return res.view('pages/User/formPassword', { user: user })
-        } catch (error) {
-            sails.log(error)
-            return res.status(500).send({ error: 'Database error' });
->>>>>>> 8562edb7768e5de8fcc6b07d395151f51157e0f3
         }
 
         try {
-<<<<<<< HEAD
-            const user = await User.update({id: userId}, params).fetch()
-            return res.status(201).json(user)
-=======
-            if (sails.helpers.cipherCompare(oldPassword, user.password)) {
-                await User.update({ id }, { password: newPassword });
-
-                return res.view('pages/User/list', { user: user });
-            } else {
-                return res.status(400).send({ error: 'Bad Resquest' });
-            }
->>>>>>> 8562edb7768e5de8fcc6b07d395151f51157e0f3
+            const user = await User.update({ id: userId }, params).fetch()
+            return res.redirect('/user/dashboard')
         } catch (error) {
             return res.status(500).send({ error: 'Database error' });
         }
@@ -103,7 +69,7 @@ module.exports = {
 
     login: async function (req, res) {
         const params = req.body;
-
+        console.log(params)
         try {
             const user = await User.findOne({ email: params.email });
 
@@ -112,12 +78,7 @@ module.exports = {
             const passwordMatch = await sails.helpers.cipherCompare(params.password, user.password);
             if (!passwordMatch) { return res.status(400).send({ error: 'Senha incorreta' }); }
 
-            const token = await sails.helpers.authToken(user);
-            if (token) {
-                return res.status(201).send({user, token})
-            } else {
-                return res.status(400).send({ error: 'Usuário não existe' });
-            }
+            return res.redirect('/user/dashboard');
 
         } catch (error) {
             sails.log(error)
