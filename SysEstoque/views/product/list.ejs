@@ -1,0 +1,244 @@
+<div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-lg-6">
+          Produtos Cadastrados
+        </div>
+        <div class="col-lg-6 text-right">
+          <button type="text" class="btn btn-icons btn-rounded btn-outline-primary" data-toggle="modal" data-target="#modalAdd"><i
+              class="mdi mdi-plus"></i></button>
+        </div>
+      </div>
+      <div class="table table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th style="width:5%">#</th>
+              <th style="width:10%">Produto</th>
+              <th style="width:10%">Número de Série</th>
+              <th style="width:10%">Categoria</th>
+              <th style="width:10%">Marca</th>
+              <th style="width:15%">Fornecedor</th>
+              <th style="width:30%">Descrição</th>
+              <th style="width:10%">Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% products.forEach(function(product, index){ %>
+            <tr>
+              <td>
+                <%= index += 1%>
+              </td>
+              <td>
+                <%= product.name %>
+              </td>
+              <td>
+                <%= product.serialNumber %>
+              </td>
+              <td>
+                <%= product.category.name %>
+              </td>
+              <td>
+                <%= product.brand %>
+              </td>
+              <td>
+                <%= product.supplier.tradeName %>
+              </td>
+              <td>
+                <%= product.description %>
+              </td>
+              <td>
+                <button onclick="editUser('<%= product.id %>', '<%= product.name %>','<%= product.serialNumber %>', '<%= product.category.name %>', '<%= product.brand %>', '<%= product.supplier.tradeName %>'), '<%= product.description %>'"
+                  class="btn btn-icons btn-rounded btn-outline-warning" data-toggle="modal" data-target="#modalEdit"><i
+                    class="mdi mdi-pencil" data-name="<%= product.name%>" data-email="<%= product.email%>"
+                    data-phoneNumber="<%= product.phoneNumber%>" data-status="<%= product.status%>" data-accessLevel="<%= product.accessLevel%>"
+                    data-id="<%= product.id%>"></i></button>
+
+                <button class="btn btn-icons btn-rounded btn-outline-danger" type="button" onClick="deleteUser('<%= product.id %>')"><i
+                    class="mdi mdi-delete"></i></button>
+              </td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de Cadastro  -->
+<div class="modal fade" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cadastro de Produto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="forms-sample" method="POST" action="/product/create">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="addSerialNumber">Número de série</label>
+                <input type="text" class="form-control" id="addSerialNumber" name="serialNumber" placeholder="Digite o número de série">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="addCategory">Categoria</label>
+                <select class="form-control" id="addCategory" name="category">
+                  <% categories.forEach(function(category){ %>
+                  <option value="<%= category.id %>">
+                    <%= category.name %>
+                  </option>
+                  <% }) %>
+                </select>
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="addBrand">Marca</label>
+                <input type="text" class="form-control" id="addBrand" name="brand" placeholder="Digite a marca">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="addName">Produto</label>
+                <input type="text" class="form-control" id="addName" name="name" placeholder="Digite o nome do produto">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="addSupplier">Fornecedor</label>
+                <select class="form-control" id="addSupplier" name="supplier">
+                  <% suppliers.forEach(function(supplier){ %>
+                  <option value="<%= supplier.id %>">
+                    <%= supplier.tradeName %>
+                  </option>
+                  <% }) %>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <label for="addDescription">Descrição</label>
+              <textarea class="form-control" id="addDescription" name="description" placeholder="Descrição do produto"></textarea>
+            </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- Fim Modal de Cadastro  -->
+
+<!-- Modal de Alteração  -->
+<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Cadastro de Produto</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form class="forms-sample" method="POST" action="/product/create">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="editSerialNumber">Número de série</label>
+                  <input type="text" class="form-control" id="editSerialNumber" name="serialNumber" placeholder="Digite o número de série">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="editCategory">Categoria</label>
+                  <select class="form-control" id="editCategory" name="category">
+                    <% categories.forEach(function(category){ %>
+                    <option value="<%= category.id %>">
+                      <%= category.name %>
+                    </option>
+                    <% }) %>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="editBrand">Marca</label>
+                  <input type="text" class="form-control" id="editBrand" name="brand" placeholder="Digite a marca">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="editName">Produto</label>
+                  <input type="text" class="form-control" id="editName" name="name" placeholder="Digite o nome do produto">
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="editSupplier">Fornecedor</label>
+                  <select class="form-control" id="editSupplier" name="supplier">
+                    <% suppliers.forEach(function(supplier){ %>
+                    <option value="<%= supplier.id %>">
+                      <%= supplier.tradeName %>
+                    </option>
+                    <% }) %>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-12">
+                <label for="editDescription">Descrição</label>
+                <textarea class="form-control" id="editDescription" name="description" placeholder="Descrição do produto"></textarea>
+              </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+<script src="/js/jquery-3.3.1.js"></script>
+<script>
+  function deleteUser(id) {
+    var del = confirm('Deseja excluir usuário?')
+    if (del == true) {
+      $.post('/product/delete/' + id, id, function () { alert("Usuário excluido com sucesso") });
+      window.location.reload()
+    }
+  }
+
+  function editUser(id, name, serialNumber, category, brand, description, supplier) {
+    $('#editSerialNumber').val(serialNumber);
+    $('#editCategory').val(category);
+    $('#editBrand').val(brand);
+    $('#editName').val(name);
+    $('#editSupplier').val(supplier);
+    $('#addDescription').val(description);
+
+    $('#editBtn').click(function () {
+      document.getElementById('editForm').setAttribute("action", "/product/update/" + id)
+    })
+  }
+</script>

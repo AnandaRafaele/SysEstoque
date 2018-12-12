@@ -14,15 +14,18 @@ module.exports = {
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
 
     street: {
-      type: 'string'
+      type: 'string',
+      required: true
     },
 
     neighborhood: {
-      type: 'string'
+      type: 'string',
+      required: true
     },
 
     number: {
-      type: 'number'
+      type: 'number',
+      required: true
     },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗

@@ -1,0 +1,236 @@
+<div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-lg-6">
+          Fornecedores Cadastrados
+        </div>
+        <div class="col-lg-6 text-right">
+          <button type="text" class="btn btn-icons btn-rounded btn-outline-primary" data-toggle="modal" data-target="#modalAdd"><i
+              class="mdi mdi-plus"></i></button>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table class="table table-hover" style="">
+          <thead>
+            <tr>
+              <th >#</th>
+              <th >Razão S.</th>
+              <th >Empresa</th>
+              <th >CNPJ</th>
+              <th >Insc. Estadual</th>
+              <th >Telefone</th>
+              <th >Email</th>
+              <th >Representante</th>
+              <th >Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% suppliers.forEach(function(supplier, index){ %>
+            <tr>
+              <td>
+                <%= index += 1%>
+              </td>
+              <td>
+                <%= supplier.company %>
+              </td>
+              <td>
+                <%= supplier.tradeName %>
+              </td>
+              <td>
+                <%= supplier.cnpj %>
+              </td>
+              <td>
+                <%= supplier.stateRegistration %>
+              </td>
+              <td>
+                <%= supplier.phoneNumber %>
+              </td>
+              <td>
+                <%= supplier.email %>
+              </td>
+              <td>
+                <%= supplier.representative %>
+              </td>
+              <td>
+                <button onclick="editSupplier('<%= supplier.id %>', '<%= supplier.company %>','<%= supplier.tradeName %>', '<%= supplier.cnpj %>', '<%= supplier.stateRegistration %>', '<%= supplier.phoneNumber %>', '<%= supplier.email %>', '<%= supplier.representative %>')"
+                  class="btn btn-icons btn-rounded btn-outline-warning" data-toggle="modal" data-target="#modalEdit"><i
+                    class="mdi mdi-pencil" data-company="<%= supplier.company%>" data-email="<%= supplier.email%>"
+                    data-phoneNumber="<%= supplier.phoneNumber%>" data-tradeName="<%= supplier.tradeName%>" data-cnpj="<%= supplier.cnpj%>"
+                    data-representative="<%= supplier.representative%>" data-stateRegistration="<%= supplier.stateRegistration%>"
+                    data-id="<%= supplier.id%>"></i></button>
+
+                <button class="btn btn-icons btn-rounded btn-outline-danger" type="button" onClick="deleteSupplier('<%= supplier.id %>')"><i
+                    class="mdi mdi-delete"></i></button>
+              </td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de Cadastro  -->
+<div class="modal fade" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Cadastro de Fornecedor</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form class="forms-sample" method="POST" action="/supplier/create">
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="addStateRegistration">Insc. Social</label>
+                <input type="text" class="form-control" id="addStateRegistration" name="stateRegistration" placeholder="Digite a inscrição estadual">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="addCnpj">CNPJ</label>
+                <input type="text" class="form-control" name="cnpj" id="addCnpj" placeholder="Digite o CNPJ">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="addCompany">Razão Social</label>
+                <input type="text" class="form-control" id="addCompany" name="company" placeholder="Digite a razão social">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="addTradeName">Nome Fantasia</label>
+                <input type="text" class="form-control" name="tradeName" id="addTradeName" placeholder="Digite o nome fantasia">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="addRepresentative">Representante</label>
+                <input type="text" class="form-control" name="representative" id="addRepresentative" placeholder="Digite o nome do representante">
+              </div>
+            </div>
+            <div class="col-lg-6">
+              <div class="form-group">
+                <label for="addPhone">Telefone</label>
+                <input type="tel" class="form-control" name="phoneNumber" id="addPhone" placeholder="Digite seu telefone">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="addEmail">Email</label>
+            <input type="email" class="form-control" name="email" id="addEmail" placeholder="Digite o email da empresa">
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Fim Modal de Cadastro  -->
+
+<!-- Modal de Alteração  -->
+<div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edição de Fornecedor</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form class="forms-sample" method="POST" action="/supplier/update/">
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="editStateRegistration">Insc. Social</label>
+                  <input type="text" class="form-control" id="editStateRegistration" name="stateRegistration" placeholder="Digite a inscrição estadual">
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="editCnpj">CNPJ</label>
+                  <input type="text" class="form-control" name="cnpj" id="editCnpj" placeholder="Digite o CNPJ">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="editCompany">Razão Social</label>
+                  <input type="text" class="form-control" id="editCompany" name="company" placeholder="Digite a razão social">
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="editTradeName">Nome Fantasia</label>
+                  <input type="text" class="form-control" name="tradeName" id="editTradeName" placeholder="Digite o nome fantasia">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="editRepresentative">Representante</label>
+                  <input type="text" class="form-control" name="representative" id="editRepresentative" placeholder="Digite o nome do representante">
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="editPhone">Telefone</label>
+                  <input type="tel" class="form-control" name="phoneNumber" id="editPhone" placeholder="Digite seu telefone">
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="editEmail">Email</label>
+              <input type="email" class="form-control" name="email" id="editEmail" placeholder="Digite o email da empresa">
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          <button type="submit" class="btn btn-primary">Atualizar</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+<script src="/js/jquery-3.3.1.js"></script>
+<script>
+  function deleteSupplier(id) {
+    console.log(id)
+    var del = confirm('Deseja excluir usuário?')
+    if (del == true) {
+      $.post('/supplier/delete/'+id, id, function () { alert("Usuário excluido com sucesso") });
+      window.location.reload()
+    }
+  }
+  
+  function editSupplier(id, company, tradeName, cnpj, stateRegistration, phoneNumber, email, representative) {
+    $('#editCompany').val(company);
+    $('#editEmail').val(email);
+    $('#editPhone').val(phoneNumber);
+    $('#editStateRegistration').val(stateRegistration);
+    $('#editCnpj').val(cnpj);
+    $('#editTradeName').val(tradeName);
+    $('#editRepresentative').val(representative);
+
+    $('#editBtn').click(function () {
+      document.getElementById('editForm').setAttribute("action", "/supplier/update/" + id)
+    })
+  }
+</script>

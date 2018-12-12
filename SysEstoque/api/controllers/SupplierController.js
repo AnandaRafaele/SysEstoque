@@ -7,18 +7,17 @@
 
 module.exports = {
 
-  async create(req, res) {
+  create: async function (req, res) {
     try {
       const objSupplier = req.body;
+      console.log(objSupplier)
 
-      let addressToCreate = {
-        street: objSupplier.address.street,
-        cep: objSupplier.address.cep,
-        number: objSupplier.address.number,
-        neighborhood: objSupplier.address.neighborhood,
-        city: objSupplier.address.city
-      }
-
+      // let addressToCreate = {
+      //   street: objSupplier.address.street,
+      //   number: objSupplier.address.number,
+      //   neighborhood: objSupplier.address.neighborhood,
+      //   city: objSupplier.address.city
+      // }
       let supplierToCreate = {
         company: objSupplier.company,
         tradeName: objSupplier.tradeName,
@@ -29,11 +28,11 @@ module.exports = {
         representative: objSupplier.representative,
       }
 
-      const createdAddress = await Address.create(addressToCreate).fetch();
-      console.log(createdAddress)
-      supplierToCreate.address = createdAddress.id;
+      // const createdAddress = await Address.create(addressToCreate).fetch();
+      // console.log(createdAddress)
+      // supplierToCreate.address = createdAddress.id;
       const supplier = await Supplier.create(supplierToCreate).fetch();
-      return res.status(201).json(supplier)
+      return res.redirect('/supplier/dashboard')
     } catch (error) {
       sails.log(error)
       return res.status(404).send({ error: 'Database error' })
@@ -43,11 +42,39 @@ module.exports = {
   list: async function (req, res) {
     try {
       const suppliers = await Supplier.find();
-      return res.status(201).json(suppliers)
+      return res.view('supplier/list', { suppliers: suppliers, layout: 'layouts/layout' })
     } catch (error) {
       return res.status(404).send({ error: 'Database error' })
     }
-  }
+  },
+
+  delete: async function (req, res) {
+    console.log(req.params.id)
+    try {
+      await Supplier.destroy({ id: req.params.id })
+      return res.redirect('/supplier/dashboard')
+    } catch (error) {
+      return res.status(500).send({ error: 'Database error' });
+    }
+  },
+
+  update: async function (req, res) {
+
+    const params = req.body;
+    let supplierId = req.params.id;
+
+    if (!supplierId) {
+      return res.status(400).send({ error: 'Faltando parâmetros' })
+    }
+
+    try {
+      const user = await Supplier.update({ id: supplierId }, params).fetch()
+      return res.redirect('/supplier/dashboard')
+    } catch (error) {
+      return res.status(500).send({ error: 'Database error' });
+    }
+
+  },
 
 };
 

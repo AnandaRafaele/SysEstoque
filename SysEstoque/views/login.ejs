@@ -17,7 +17,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="/styles/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="/images/favicon.png" />
+  <link rel="shortcut icon" href="/images/favicon.ico" />
 </head>
 
 <body>
@@ -27,11 +27,11 @@
         <div class="row w-100">
           <div class="col-lg-4 mx-auto">
             <div class="auto-form-wrapper">
-              <form action="#">
+              <form action="user/login" method="POST">
                 <div class="form-group">
-                  <label class="label">Username</label>
+                  <label class="label">Usuário</label>
                   <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Username">
+                    <input type="text" name="email" class="form-control" placeholder="Usuário">
                     <div class="input-group-append">
                       <span class="input-group-text">
                         <i class="mdi mdi-check-circle-outline"></i>
@@ -40,9 +40,9 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label class="label">Password</label>
+                  <label class="label">Senha</label>
                   <div class="input-group">
-                    <input type="password" class="form-control" placeholder="*********">
+                    <input type="password" name="password" class="form-control" placeholder="*********">
                     <div class="input-group-append">
                       <span class="input-group-text">
                         <i class="mdi mdi-check-circle-outline"></i>

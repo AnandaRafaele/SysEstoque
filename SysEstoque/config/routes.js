@@ -17,47 +17,51 @@ module.exports.routes = {
     action: 'delete'
   },
 
-  '/user/update/:id': {
-    controller: 'UserController',
-    action: 'update'
-  },
-  '/user/update/:id': {
+  'put /user/update/:id': {
     controller: 'UserController',
     action: 'update'
   },
 
-  '/user/signup': {
+  'post /user/signup': {
     controller: 'UserController',
     action: 'signup'
   },
-  '/user/password/:id': {
+
+  'put /user/password/:id': {
     controller: 'UserController',
     action: 'password'
   },
-  '/user/login': {
+
+  'post /user/login': {
     controller: 'UserController',
     action: 'login'
   },
-  '/user/list': {
+
+  'get /user/dashboard': {
     controller: 'UserController',
     action: 'list'
   },
 
   //SUPPLIER ROUTES
 
-  '/supplier/add': {
+  'post /supplier/create': {
     controller: 'SupplierController',
     action: 'create'
   },
 
-  '/supplier/list': {
+  '/supplier/dashboard': {
     controller: 'SupplierController',
     action: 'list'
   },
 
-  '/supplier/update': {
+  'put /supplier/update/:id': {
     controller: 'SupplierController',
     action: 'update'
+  },
+  
+  'post /supplier/delete/:id': {
+    controller: 'SupplierController',
+    action: 'delete'
   },
 
   //STATE ROUTES
@@ -69,25 +73,41 @@ module.exports.routes = {
 
   //CITY ROUTES
 
-  '/city': {
+  '/post city': {
     controller: 'CityController',
     action: 'create'
   },
-
-  // VIEWS
 
   'get /': {
     view: 'login',
   },
 
-  '/user/dashboard': {
-    controller: 'UserController',
+  // PRODUCT ROUTES
+
+  'get /product/dashboard': {
+    controller: 'ProductController',
     action: 'list',
   },
 
-  '/product/dashboard': {
-    view: 'product/dashboardProduct',
+  'post /product/delete/:id': {
+    controller: 'ProductController',
+    action: 'delete',
+  },
+  
+  'post /product/create': {
+    controller: 'ProductController',
+    action: 'create',
   },
 
+  // CATEGORY ROUTES
+  'post /category/create': {
+    controller: 'CategoryController',
+    action: 'create',
+  },
+
+  'get /category/list': {
+    controller: 'CategoryController',
+    action: 'list',
+  },
 
 };

@@ -18,6 +18,10 @@ module.exports = {
       required: true
     },
 
+    supplier: {
+      model: 'supplier'
+    },
+
     description: {
       type: 'string'
     },
@@ -28,17 +32,20 @@ module.exports = {
     },
 
     model: {
-      type: 'string',
-      required: true
+      type: 'string'
     },
 
     serialNumber: {
-      type: 'number',
+      type: 'string',
       required: true
     },
 
     maxStock: {
       type: 'number'
+    },
+
+    category: {
+      model: 'category'
     },
 
     minStock: {

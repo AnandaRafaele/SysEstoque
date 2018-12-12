@@ -26,7 +26,7 @@ module.exports = {
     },
 
     stateRegistration: {
-      type: 'string'
+      type: 'number'
     },
 
     phoneNumber: {

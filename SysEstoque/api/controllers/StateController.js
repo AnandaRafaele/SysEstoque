@@ -9,7 +9,6 @@ module.exports = {
 
   create: async function (req, res) {
     const name = req.body.name
-    console.log(name)
     try {
       const stateCreated = await State.create({name}).fetch()
       return res.status(201).json(stateCreated)
