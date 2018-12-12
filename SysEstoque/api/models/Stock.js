@@ -13,6 +13,18 @@ module.exports = {
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
 
+    minQuantity: {
+      type: 'number'
+    },
+
+    valUnit: {
+      type: 'number'
+    },
+
+    valTotal: {
+      type: 'string'
+    },
+    
     quantity: {
       type: 'number'
     },

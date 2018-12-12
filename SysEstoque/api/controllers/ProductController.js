@@ -22,7 +22,6 @@ module.exports = {
 
   create: async function (req, res) {
     const params = req.body;
-    console.log(params)
     try {
       let productToCreate = {
         name: params.name,

@@ -10,7 +10,6 @@ module.exports = {
   create: async function (req, res) {
     try {
       const objSupplier = req.body;
-      console.log(objSupplier)
 
       // let addressToCreate = {
       //   street: objSupplier.address.street,
@@ -49,7 +48,6 @@ module.exports = {
   },
 
   delete: async function (req, res) {
-    console.log(req.params.id)
     try {
       await Supplier.destroy({ id: req.params.id })
       return res.redirect('/supplier/dashboard')

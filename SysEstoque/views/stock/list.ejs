@@ -3,7 +3,7 @@
       <div class="card-body">
         <div class="row">
           <div class="col-lg-6">
-            Usuários Cadastrados
+           Estoque
           </div>
           <div class="col-lg-6 text-right">
             <button type="text" class="btn btn-icons btn-rounded btn-outline-primary" data-toggle="modal" data-target="#modalAdd"><i
@@ -15,42 +15,50 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th>Nome</th>
-                <th>Email</th>
-                <th>Telefone</th>
-                <th>Acesso</th>
-                <th>Status</th>
+                <th>Produto</th>
+                <th>Em estoque</th>
+                <th>Valor Unitário</th>
+                <th>Valor Total</th>
+                <th>QNTD Mínima</th>
                 <th>Ações</th>
               </tr>
             </thead>
             <tbody>
-              <% users.forEach(function(user, index){ %>
+              <% stocks.forEach(function(stock, index){ %>
               <tr>
                 <td>
                   <%= index += 1%>
                 </td>
                 <td>
-                  <%= user.name %>
+                  <%= stock.product.name %>
                 </td>
                 <td>
-                  <%= user.email %>
+                  <%= stock.quantity %>
                 </td>
                 <td>
-                  <%= user.phoneNumber %>
+                  <%= stock.valUnit %>
                 </td>
                 <td>
-                  <%= user.status === 'activated' ? 'Ativo' : user.status === 'disabled' ? 'Pendente' : 'Bloqueado' %>
+                  <%= stock.valTotal %>
                 </td>
                 <td>
-                  <%= user.accessLevel === 'employee' ? 'Empregado' : 'Administrador' %>
+                  <%= stock.minQuantity %>
                 </td>
                 <td>
-                  <button onclick="editUser('<%= user.id %>', '<%= user.name %>','<%= user.email %>', '<%= user.phoneNumber %>', '<%= user.status %>', '<%= user.accessLevel %>')" class="btn btn-icons btn-rounded btn-outline-warning" data-toggle="modal" data-target="#modalEdit"><i
-                      class="mdi mdi-pencil" data-name="<%= user.name%>" data-email="<%= user.email%>" data-phoneNumber="<%= user.phoneNumber%>"
-                      data-status="<%= user.status%>" data-accessLevel="<%= user.accessLevel%>" data-id="<%= user.id%>"></i></button>
+                  <button onclick="editStock('<%= stock.id %>', '<%= stock.product.name %>',
+                    '<%= stock.quantity %>', '<%= stock.valUnit %>', '<%= stock.valTotal %>',
+                    '<%= stock.minQuantity %>')" 
+                    class="btn btn-icons btn-rounded btn-outline-warning" data-toggle="modal" data-target="#modalEdit"
+                    data-product="<%= stock.product.name%>"
+                    data-quantity="<%= stock.quantity%>"
+                    data-valUnit="<%= stock.valUnit%>"
+                    data-valTotal="<%= stock.valTotal%>"
+                    data-minQuantity="<%= stock.minQuantity%>"
+                    data-id="<%= stock.id%>"
+                    ><i class="mdi mdi-pencil"></i></button>
                   
-                      <button class="btn btn-icons btn-rounded btn-outline-danger" type="button" onClick="deleteUser('<%= user.id %>')"><i
-                      class="mdi mdi-delete"></i></button>
+                  <button class="btn btn-icons btn-rounded btn-outline-danger" type="button" onClick="deleteStock('<%= stock.id %>')"><i
+                    class="mdi mdi-delete"></i></button>
                 </td>
               </tr>
               <% }) %>
@@ -66,63 +74,52 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Edição de Usuário</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Cadastro de Estoque</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <form class="forms-sample" method="POST" action="/user/signup">
+          <form class="forms-sample" method="POST" action="/stock/create">
             <div class="row">
               <div class="col-lg-6">
                 <div class="form-group">
-                  <label for="addName">Nome</label>
-                  <input type="text" class="form-control" id="addName" name="name" placeholder="Digite seu nome">
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="form-group">
-                  <label for="addPhone">Telefone</label>
-                  <input type="tel" class="form-control" name="phoneNumber" id="addPhone" placeholder="Digite seu telefone">
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="addEmail">Email</label>
-              <input type="email" class="form-control" name="email" id="addEmail" placeholder="Digite seu email">
-            </div>
-            <div class="row">
-              <div class="col-lg-6">
-                <div class="form-group">
-                  <label for="addName">Senha</label>
-                  <input type="password" class="form-control" id="addPassword" name="password" placeholder="Digite sua senha">
-                </div>
-              </div>
-              <div class="col-lg-6">
-                <div class="form-group">
-                  <label for="addPhone">Confirmar Senha</label>
-                  <input type="password" class="form-control" name="confirmPassword" id="addConfirmPassword" placeholder="Confirmar senha">
+                  <label for="addProduct">Produto</label>
+                  <select class="form-control" id="addProduct" name="product">
+                    <% products.forEach(function(product){ %>
+                      <option value="<%= product.id %>">
+                          <%= product.name %>
+                        </option>
+                    <% }) %>
+                    </select>
                 </div>
               </div>
             </div>
             <div class="row">
               <div class="col-lg-6">
                 <div class="form-group">
-                  <label for="addStatus">Status</label>
-                  <select class="form-control" id="addStatus" name="status">
-                    <option value="activated" selected>Ativo</option>
-                    <option value="disabled">Pendente</option>
-                    <option value="blocked">Bloqueado</option>
-                  </select>
+                  <label for="addQuantity">Quantidade</label>
+                  <input type="number" class="form-control" id="addQuantity" name="quantity" placeholder="Ex.: 150">
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="form-group">
-                  <label for="addLevel">Nível de Acesso</label>
-                  <select class="form-control" id="addLevel" name="accessLevel">
-                    <option value="employee" selected>Empregado</option>
-                    <option value="administrator">Administrador</option>
-                  </select>
+                  <label for="addValUnit">Valor Unitário</label>
+                  <input type="text" class="form-control" name="valUnit" id="addValUnit" onblur="calcular();" placeholder="Ex.: 500,00">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="addMinQuantity">Quantidade mínima</label>
+                  <input type="number" class="form-control" name="minQuantity" id="addMinQuantity" placeholder="Ex.: 100,00">
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="addValTotal">Valor Total</label>
+                  <input type="text" class="form-control" name="valTotal" id="addValTotal" placeholder="Valor total">
                 </div>
               </div>
             </div>
@@ -200,15 +197,29 @@
   </div>
   <script src="/js/jquery-3.3.1.js"></script>
   <script>
-    function deleteUser(id) {
+
+    function calcular() {
+      var n1 = $('#addQuantity').val();
+      var n2 = $('#addValUnit').val();
+      if (n2.match(/,/)) {
+        n2 = n2.replace(",", ".");
+      }
+      soma = parseFloat(parseInt(n1) * parseFloat(n2).toFixed(2)).toFixed(2);
+      console.log(soma)
+      $('#addValTotal').val(soma);
+    }
+
+    function deleteStock(id) {
       var del = confirm('Deseja excluir usuário?')
       if (del == true) {
-        $.post('/user/delete/' + id, id, function () { alert("Usuário excluido com sucesso") });
-        window.location.reload()
+        $.post('/stock/delete/' + id, id, function () { 
+          alert("Usuário excluido com sucesso");
+          window.location.reload()
+        });
       }
     }
   
-    function editUser(id, name, email, phoneNumber, status, accessLevel){
+    function editStock(id, name, email, phoneNumber, status, accessLevel){
       $('#editName').val(name);
       $('#editEmail').val(email);
       $('#editPhone').val(phoneNumber);
@@ -216,7 +227,7 @@
       $('#editLevel').val(accessLevel);
   
       $('#editBtn').click(function(){
-        document.getElementById('editForm').setAttribute("action", "/user/update/"+id)
+        document.getElementById('editForm').setAttribute("action", "/stock/update/"+id)
       })
     }
   </script>

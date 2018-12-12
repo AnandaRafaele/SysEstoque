@@ -110,4 +110,20 @@ module.exports.routes = {
     action: 'list',
   },
 
+  //STOCK ROUTES
+  '/stock/create': {
+    controller: 'StockController',
+    action: 'create',
+  },
+  
+  '/stock/delete/:id': {
+    controller: 'StockController',
+    action: 'delete',
+  },
+
+  '/stock/dashboard': {
+    controller: 'StockController',
+    action: 'list',
+  }
+
 };

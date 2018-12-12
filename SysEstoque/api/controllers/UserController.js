@@ -12,7 +12,6 @@ module.exports = {
 
     signup: async function (req, res) {
         const params = req.body;
-        console.log(params)
         try {
 
             if (!params.password) {
@@ -69,7 +68,6 @@ module.exports = {
 
     login: async function (req, res) {
         const params = req.body;
-        console.log(params)
         try {
             const user = await User.findOne({ email: params.email });
 
