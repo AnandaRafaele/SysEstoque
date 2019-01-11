@@ -45,11 +45,12 @@
                 <%= user.accessLevel === 'employee' ? 'Empregado' : 'Administrador' %>
               </td>
               <td>
-                <button onclick="editUser('<%= user.id %>', '<%= user.name %>','<%= user.email %>', '<%= user.phoneNumber %>', '<%= user.status %>', '<%= user.accessLevel %>')" class="btn btn-icons btn-rounded btn-outline-warning" data-toggle="modal" data-target="#modalEdit"><i
+                <button onclick="editUser('<%= user.id %>', '<%= user.name %>','<%= user.email %>', '<%= user.phoneNumber %>', '<%= user.status %>', '<%= user.accessLevel %>')"
+                  class="btn btn-icons btn-rounded btn-outline-warning" data-toggle="modal" data-target="#modalEdit"><i
                     class="mdi mdi-pencil" data-name="<%= user.name%>" data-email="<%= user.email%>" data-phoneNumber="<%= user.phoneNumber%>"
                     data-status="<%= user.status%>" data-accessLevel="<%= user.accessLevel%>" data-id="<%= user.id%>"></i></button>
-                
-                    <button class="btn btn-icons btn-rounded btn-outline-danger" type="button" onClick="deleteUser('<%= user.id %>')"><i
+
+                <button class="btn btn-icons btn-rounded btn-outline-danger" type="button" onClick="deleteUser('<%= user.id %>')"><i
                     class="mdi mdi-delete"></i></button>
               </td>
             </tr>
@@ -101,7 +102,8 @@
             <div class="col-lg-6">
               <div class="form-group">
                 <label for="addPhone">Confirmar Senha</label>
-                <input type="password" class="form-control" name="confirmPassword" id="addConfirmPassword" placeholder="Confirmar senha">
+                <input type="password" class="form-control" name="confirmPassword" onblur="matchPassword()" id="addConfirmPassword" placeholder="Confirmar senha">
+                <small id="msgPassword"></small>
               </div>
             </div>
           </div>
@@ -120,7 +122,7 @@
               <div class="form-group">
                 <label for="addLevel">Nível de Acesso</label>
                 <select class="form-control" id="addLevel" name="accessLevel">
-                  <option value="employee" selected>Empregado</option>
+                  <option value="employee">Empregado</option>
                   <option value="administrator">Administrador</option>
                 </select>
               </div>
@@ -129,7 +131,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
+        <button type="submit" id="addSubmit" class="btn btn-primary">Cadastrar</button>
       </div>
       </form>
     </div>
@@ -203,20 +205,38 @@
   function deleteUser(id) {
     var del = confirm('Deseja excluir usuário?')
     if (del == true) {
-      $.post('/user/delete/' + id, id, function () { alert("Usuário excluido com sucesso") });
-      window.location.reload()
+      $.post('/user/delete/' + id, id, function () {
+        alert("Usuário excluido com sucesso");
+        window.location.reload()
+      });
     }
   }
 
-  function editUser(id, name, email, phoneNumber, status, accessLevel){
+  function editUser(id, name, email, phoneNumber, status, accessLevel) {
     $('#editName').val(name);
     $('#editEmail').val(email);
     $('#editPhone').val(phoneNumber);
     $('#editStatus').val(status);
     $('#editLevel').val(accessLevel);
 
-    $('#editBtn').click(function(){
-      document.getElementById('editForm').setAttribute("action", "/user/update/"+id)
+    $('#editBtn').click(function () {
+      document.getElementById('editForm').setAttribute("action", "/user/update/" + id)
     })
+  }
+
+  function matchPassword() {
+    let password = $("#addPassword").val();
+    let confirm = $("#addConfirmPassword").val();
+
+    if (password != confirm) {
+      $("#msgPassword").text("As senhas não correspondem").attr("class", "badge badge-danger");
+      $('#addSubmit').prop("disabled", true);
+      return false;
+    } else {
+      $("#msgPassword").text("Senhas correspondentes").attr("class", "badge badge-success");
+      $('#addSubmit').prop("disabled", false);
+      return true;
+    }
+
   }
 </script>

@@ -59,22 +59,14 @@ module.exports = {
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
     //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
 
-    goodsIssueItens: {
-      model: 'goodsIssueIten'
-    },
-
-    goodsReceiptItens: {
-      model: 'goodsReceiptIten'
-    },
-
     user: {
       model: 'user'
-    }
-
+    },
+    
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-
+    
   },
 
 };

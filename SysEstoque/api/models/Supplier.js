@@ -24,9 +24,13 @@ module.exports = {
     cnpj: {
       type: 'number'
     },
+    
+    cpf: {
+      type: 'number'
+    },
 
     stateRegistration: {
-      type: 'number'
+      type: 'string'
     },
 
     phoneNumber: {
@@ -62,11 +66,6 @@ module.exports = {
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
 
-    goodsIssues: {
-      collection: "goodsIssue",
-      via: "supplier"
-    }
   },
 
 };
-

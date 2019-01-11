@@ -10,13 +10,13 @@ module.exports = {
   list: async function (req, res) {
     try {
       const products = await Product.find().populate('supplier').populate('category');
-      const categories = await Category.find()
+      const categories = await Category.find();
       const suppliers = await Supplier.find()
 
-      return res.view('product/list', { products: products, categories: categories, suppliers: suppliers, layout: 'layouts/layout' })
+      return res.view('product/product', { products: products, categories: categories, suppliers: suppliers, layout: 'layouts/layout' })
     } catch (error) {
       sails.log(error)
-      return res.status(500).send({ error: 'Database error' });
+      return res.view('500');
     }
   },
 
@@ -30,15 +30,11 @@ module.exports = {
         serialNumber: params.serialNumber,
         supplier: params.supplier,
         category: params.category
-        // maxStock: params.maxStock,
-        // minStock: params.minStock,
-        // goodsIssueItens: params.goodsIssueItens,
-        // goodsReceiptItens: params.goodsReceiptItens,
       }
 
       const product = await Product.create(productToCreate)
 
-      return res.redirect('/product/dashboard')
+      return res.redirect('/product')
     } catch (error) {
       sails.log(error)
       return res.status(500).send({ error })
@@ -48,9 +44,9 @@ module.exports = {
   delete: async function (req, res) {
     try {
       await Product.destroy({ id: req.params.id })
-      return res.redirect('/product/dashboard')
+      return res.redirect('/product')
     } catch (error) {
-      return res.status(500).send({ error: 'Database error' });
+      return res.view('500');
     }
   },
 
@@ -65,9 +61,9 @@ module.exports = {
 
     try {
       const user = await Product.update({ id: productId }, params).fetch()
-      return res.redirect('/product/dashboard')
+      return res.redirect('/product')
     } catch (error) {
-      return res.status(500).send({ error: 'Database error' });
+      return res.view('500');
     }
 
   },

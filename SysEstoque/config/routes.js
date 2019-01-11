@@ -12,54 +12,54 @@ module.exports.routes = {
 
   //USER ROUTES
 
-  'post /user/delete/:id': {
+  '/user/delete/:id': {
     controller: 'UserController',
     action: 'delete'
   },
 
-  'put /user/update/:id': {
+  '/user/update/:id': {
     controller: 'UserController',
     action: 'update'
   },
 
-  'post /user/signup': {
+  '/user/signup': {
     controller: 'UserController',
     action: 'signup'
   },
 
-  'put /user/password/:id': {
+  '/user/password/:id': {
     controller: 'UserController',
     action: 'password'
   },
 
-  'post /user/login': {
+  '/user/login': {
     controller: 'UserController',
     action: 'login'
   },
 
-  'get /user/dashboard': {
+  '/user': {
     controller: 'UserController',
     action: 'list'
   },
 
   //SUPPLIER ROUTES
 
-  'post /supplier/create': {
+  '/supplier/create': {
     controller: 'SupplierController',
     action: 'create'
   },
 
-  '/supplier/dashboard': {
+  '/supplier': {
     controller: 'SupplierController',
     action: 'list'
   },
 
-  'put /supplier/update/:id': {
+  '/supplier/update/:id': {
     controller: 'SupplierController',
     action: 'update'
   },
-  
-  'post /supplier/delete/:id': {
+
+  '/supplier/delete/:id': {
     controller: 'SupplierController',
     action: 'delete'
   },
@@ -73,56 +73,101 @@ module.exports.routes = {
 
   //CITY ROUTES
 
-  '/post city': {
+  '/city': {
     controller: 'CityController',
     action: 'create'
   },
 
-  'get /': {
+  '/': {
     view: 'login',
   },
 
   // PRODUCT ROUTES
 
-  'get /product/dashboard': {
+  '/product': {
     controller: 'ProductController',
     action: 'list',
   },
 
-  'post /product/delete/:id': {
+  '/product/delete/:id': {
     controller: 'ProductController',
     action: 'delete',
   },
-  
-  'post /product/create': {
+
+  '/product/create': {
     controller: 'ProductController',
     action: 'create',
   },
 
   // CATEGORY ROUTES
-  'post /category/create': {
+  '/category/create': {
     controller: 'CategoryController',
     action: 'create',
   },
 
-  'get /category/list': {
+  '/category/delete/:id': {
     controller: 'CategoryController',
-    action: 'list',
+    action: 'delete',
   },
 
-  //STOCK ROUTES
+  //CUSTOMER ROUTES
   '/stock/create': {
     controller: 'StockController',
     action: 'create',
   },
-  
+
   '/stock/delete/:id': {
     controller: 'StockController',
     action: 'delete',
   },
 
-  '/stock/dashboard': {
+  '/stock': {
     controller: 'StockController',
+    action: 'list',
+  },
+
+  //SELL ROUTES
+  '/sell/create': {
+    controller: 'SellController',
+    action: 'create',
+  },
+
+  '/sell/delete/:id': {
+    controller: 'SellController',
+    action: 'delete',
+  },
+
+  '/sell': {
+    controller: 'SellController',
+    action: 'list',
+  },
+
+  //CUSTOMER ROUTES
+  '/customer/create': {
+    controller: 'CustomerController',
+    action: 'create',
+  },
+
+  '/customer/delete/:id': {
+    controller: 'CustomerController',
+    action: 'delete',
+  },
+
+  '/customer': {
+    controller: 'CustomerController',
+    action: 'list',
+  },
+
+  //CONTROL ROUTES
+  '/brand/create': {
+    controller: 'BrandController',
+    action: 'create',
+  },
+
+  //CONTROL ROUTES
+
+  '/controle': {
+    controller: 'CategoryController',
     action: 'list',
   }
 

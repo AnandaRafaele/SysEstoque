@@ -1,0 +1,164 @@
+<div class="col-lg-12 grid-margin stretch-card">
+  <div class="card">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-lg-6">
+          Controle de dados
+        </div>
+      </div>
+      <br>
+
+      <div class="row">
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#category" aria-expanded="false" aria-controls="collapseExample">
+          <i class="mdi mdi-plus"></i>Categorias
+        </button>
+      </div>
+      <hr>
+      <div class="collapse" id="category">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="card card-body">
+              <form action="/category/create" method="POST">
+                <div class="form-group">
+                  <label for="addValTotal">Categoria</label>
+                  <input type="text" class="form-control" name="name" id="addCategory" placeholder="Ex.: Estojos... Necessaire...">
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-success btn-fw">
+                    <i class="mdi mdi-check"></i>Cadastrar</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="table table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Categorias</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% categories.forEach(function(category, index){ %>
+                    <tr>
+                      <td>
+                        <%= index += 1%>
+                      </td>
+                      <td>
+                        <%= category.name %>
+                      </td>
+                      <td>
+                        <button onclick="editCategory('<%= category.id %>', '<%= category.name %>')" class="btn btn-icons btn-rounded btn-outline-warning">
+                          <i class="mdi mdi-pencil"></i>
+                        </button>
+
+                        <button class="btn btn-icons btn-rounded btn-outline-danger" type="button" onClick="deleteCategory('<%= category.id %>')">
+                          <i class="mdi mdi-delete"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- CATEGORIES END -->
+
+      <div class="row">
+        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#brand" aria-expanded="false" aria-controls="collapseExample">
+          <i class="mdi mdi-plus"></i>Marcas
+        </button>
+      </div>
+      <hr>
+      <div class="collapse" id="brand">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="card card-body">
+              <form action="/brand/create" method="POST">
+                <div class="form-group">
+                  <label for="addValTotal">Categoria</label>
+                  <select class="form-control" id="addCategory" name="category">
+                    <% categories.forEach(function(category){ %>
+                      <option value="<%= category.id %>">
+                        <%= category.name %>
+                      </option>
+                      <% }) %>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="addValTotal">Marca</label>
+                  <input type="text" class="form-control" name="name" id="addCategory" placeholder="Ex.: Aquarela... Chanel...">
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-success btn-fw">
+                    <i class="mdi mdi-check"></i>Cadastrar</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="table table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Marca</th>
+                    <th>Categoria</th>
+                    <th>Ações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% brands.forEach(function(brand, index){ %>
+                    <tr>
+                      <td>
+                        <%= index += 1%>
+                      </td>
+                      <td>
+                        <%= brand.name %>
+                      </td>
+                      <td>
+                        <%= brand.category.name %>
+                      </td>
+                      <td>
+                        <button onclick="editBrand('<%= brand.id %>', '<%= brand.name %>', '<%= brand.category.name %>')" class="btn btn-icons btn-rounded btn-outline-warning">
+                          <i class="mdi mdi-pencil"></i>
+                        </button>
+
+                        <button class="btn btn-icons btn-rounded btn-outline-danger" type="button" onClick="deleteBrand('<%= brand.id %>')">
+                          <i class="mdi mdi-delete"></i>
+                        </button>
+                      </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  function deleteCategory(id) {
+    var del = confirm('Deseja excluir categoria?')
+    if (del == true) {
+      $.post('/category/delete/' + id, id, function () { alert("Categoria excluida com sucesso") });
+      window.location.reload()
+    }
+  }
+
+  function deleteBrand(id) {
+    var del = confirm('Deseja excluir marca?')
+    if (del == true) {
+      $.post('/product/delete/' + id, id, function () { alert("Marca excluida com sucesso") });
+      window.location.reload()
+    }
+  }
+</script>

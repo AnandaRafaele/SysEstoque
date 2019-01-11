@@ -31,28 +31,28 @@ module.exports = {
       // console.log(createdAddress)
       // supplierToCreate.address = createdAddress.id;
       const supplier = await Supplier.create(supplierToCreate).fetch();
-      return res.redirect('/supplier/dashboard')
+      return res.redirect('/supplier')
     } catch (error) {
       sails.log(error)
-      return res.status(404).send({ error: 'Database error' })
+      return res.view('500');
     }
   },
 
   list: async function (req, res) {
     try {
       const suppliers = await Supplier.find();
-      return res.view('supplier/list', { suppliers: suppliers, layout: 'layouts/layout' })
+      return res.view('supplier/supplier', { suppliers: suppliers, layout: 'layouts/layout' })
     } catch (error) {
-      return res.status(404).send({ error: 'Database error' })
+      return res.view('500');
     }
   },
 
   delete: async function (req, res) {
     try {
       await Supplier.destroy({ id: req.params.id })
-      return res.redirect('/supplier/dashboard')
+      return res.redirect('/supplier')
     } catch (error) {
-      return res.status(500).send({ error: 'Database error' });
+      return res.view('500');;
     }
   },
 
@@ -67,11 +67,10 @@ module.exports = {
 
     try {
       const user = await Supplier.update({ id: supplierId }, params).fetch()
-      return res.redirect('/supplier/dashboard')
+      return res.redirect('/supplier')
     } catch (error) {
-      return res.status(500).send({ error: 'Database error' });
+      return res.view('500');;
     }
-
   },
 
 };

@@ -5,8 +5,9 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>SysEstoque</title>
+  <title>Aquarela</title>
   <!-- plugins:css -->
+  <link rel="stylesheet" href="/vendors/iconfonts/font-awesome/css/font-awesome.css">
   <link rel="stylesheet" href="/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
   <link rel="stylesheet" href="/vendors/css/vendor.bundle.base.css">
   <link rel="stylesheet" href="/vendors/css/vendor.bundle.addons.css">
@@ -23,11 +24,11 @@
     <!-- partial:/partials/_navbar.html -->
     <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
-        <a class="navbar-brand brand-logo" href="/index.html">
-          <img src="/images/logo.png" alt="logo" />
+        <a class="navbar-brand brand-logo" href="/user">
+          <img src="/images/logo.svg" alt="logo" />
         </a>
-        <a class="navbar-brand brand-logo-mini" href="/index.html">
-          <img src="/images/SE.png" alt="logo" />
+        <a class="navbar-brand brand-logo-mini" href="/user">
+          <img src="/images/logo-mini.svg" alt="logo" />
         </a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center">
@@ -77,27 +78,57 @@
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="/user/dashboard">
-              <i class="menu-icon mdi mdi-television"></i>
+            <a class="nav-link" href="/user">
+              <i class="menu-icon mdi mdi-account"></i>
               <span class="menu-title">Usuários</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/product/dashboard" aria-expanded="false" aria-controls="ui-basic">
-              <i class="menu-icon mdi mdi-content-copy"></i>
-              <span class="menu-title">Produtos</span>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/supplier/dashboard" aria-expanded="false" aria-controls="ui-basic">
-              <i class="menu-icon mdi mdi-content-copy"></i>
+            <a class="nav-link" href="/supplier" aria-expanded="false" aria-controls="ui-basic">
+              <i class="menu-icon mdi mdi-truck"></i>
               <span class="menu-title">Fornecedores</span>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/stock/dashboard">
-              <i class="menu-icon mdi mdi-backup-restore"></i>
+            <a class="nav-link" href="/customer">
+              <i class="menu-icon mdi mdi-home-variant"></i>
+              <span class="menu-title">Clientes</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/product" aria-expanded="false" aria-controls="ui-basic">
+              <i class="menu-icon mdi mdi-cart"></i>
+              <span class="menu-title">Produtos</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/stock">
+              <i class="menu-icon mdi mdi-archive"></i>
               <span class="menu-title">Estoque</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/sell">
+              <i class="menu-icon mdi mdi-cash"></i>
+              <span class="menu-title">Vendas</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="menu-icon mdi mdi-view-list"></i>
+              <span class="menu-title">Contas à Pagar</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="menu-icon mdi mdi-qrcode"></i>
+              <span class="menu-title">Nota Fiscal</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/controle">
+              <i class="menu-icon mdi mdi-settings"></i>
+              <span class="menu-title">Controle</span>
             </a>
           </li>
         </ul>
@@ -106,10 +137,9 @@
       <div class="main-panel">
         <%- body %>
       </div>
+      <!-- content-wrapper ends -->
+      <!-- partial:/partials/_footer.html -->
     </div>
-
-    <!-- content-wrapper ends -->
-    <!-- partial:/partials/_footer.html -->
     <footer class="footer">
       <div class="container-fluid clearfix">
         <span class="text-muted d-block text-center text-sm-left d-sm-inline-block">Copyright © 2018
@@ -121,15 +151,9 @@
     </footer>
     <!-- partial -->
   </div>
-  <!-- main-panel ends -->
-  </div>
-  <!-- page-body-wrapper ends -->
-  </div>
-  <!-- container-scroller -->
-
 
   <!-- plugins:js -->
-  
+
   <script src="/vendors/js/vendor.bundle.base.js"></script>
   <script src="/vendors/js/vendor.bundle.addons.js"></script>
   <!-- endinject -->

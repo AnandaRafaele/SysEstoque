@@ -1,19 +1,17 @@
 /**
- * CategoryController
+ * BrandController
  *
  * @description :: Server-side actions for handling incoming requests.
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
 module.exports = {
-
+  
   list: async function (req, res) {
     try {
-      const categories = await Category.find();
       const brands = await Brand.find().populate('category');
-      return res.view('control/control', { categories: categories, brands: brands, layout: 'layouts/layout' })
+      return res.view('control/control',{brands:brands, layout: 'layouts/layout' })
     } catch (error) {
-      sails.log(error);
       return res.view('500');
     }
   },
@@ -22,17 +20,17 @@ module.exports = {
     const params = req.body
 
     try {
-      const category = await Category.create({ name: params.name }).fetch()
-
+      const brand = await Brand.create({name: params.name, category: params.category }).fetch()
+      
       return res.redirect('/controle')
     } catch (error) {
       return res.view('500');
     }
   },
 
-  delete: async function (req, res) {
+  delele: async function (req, res) {
     try {
-      await Category.destroy({ id: req.params.id })
+      await Brand.destroy({ id: req.params.id })
       return res.redirect('/controle')
     } catch (error) {
       return res.view('500');

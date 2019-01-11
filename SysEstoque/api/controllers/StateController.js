@@ -13,7 +13,7 @@ module.exports = {
       const stateCreated = await State.create({name}).fetch()
       return res.status(201).json(stateCreated)
     } catch (error) {
-      return res.status(400).send({ error: 'Database error' })
+      return res.view('500');
     }
   }
 };

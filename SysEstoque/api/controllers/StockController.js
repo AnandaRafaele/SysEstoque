@@ -19,7 +19,7 @@ module.exports = {
       }
       await Stock.create(stockToCreate)
 
-      return res.redirect('/stock/dashboard')
+      return res.redirect('/stock')
     } catch (error) {
       sails.log(error)
       return res.status(500).send({ error: "Dataserver error" })
@@ -30,18 +30,18 @@ module.exports = {
     try {
       const stocks = await Stock.find().populate('product');
       const products = await Product.find();
-      return res.view('stock/list', { stocks: stocks, products:products, layout: 'layouts/layout' })
+      return res.view('stock/stock', { stocks: stocks, products:products, layout: 'layouts/layout' })
     } catch (error) {
-      return res.status(404).send({ error: 'Database error' })
+      return res.view('500');
     }
   },
 
   delete: async function (req, res) {
     try {
       await Stock.destroy({ id: req.params.id })
-      return res.redirect('/stock/dashboard')
+      return res.redirect('/stock')
     } catch (error) {
-      return res.status(500).send({ error: 'Database error' });
+      return res.view('500');;
     }
   },
 

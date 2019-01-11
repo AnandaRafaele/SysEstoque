@@ -4,9 +4,9 @@ module.exports = {
     list: async function (req, res) {
         try {
             const users = await User.find();
-            return res.view('user/list', {users: users, layout: 'layouts/layout'})
+            return res.view('user/user', {users: users, layout: 'layouts/layout'})
         } catch (error) {
-            return res.status(500).send({ error: 'Database error' });
+            return res.view('500');
         }
     },
 
@@ -28,13 +28,14 @@ module.exports = {
                 phoneNumber: params.phoneNumber,
                 password: params.password,
                 status: params.status,
+                accessLevel: params.accessLevel
             }
 
             const user = await User.create(userToCreate).fetch();
-            return res.redirect('/user/dashboard')
+            return res.redirect('/user')
         } catch (error) {
             sails.log(error)
-            return res.status(500).send({ error: 'Database error' });
+            return res.view('500');;
         }
     },
 
@@ -42,9 +43,9 @@ module.exports = {
 
         try {
             await User.destroy({ id: req.params.id })
-            return res.redirect('/user/dashboard')
+            return res.redirect('/user')
         } catch (error) {
-            return res.status(500).send({ error: 'Database error' });
+            return res.view('500');;
         }
     },
 
@@ -59,9 +60,9 @@ module.exports = {
 
         try {
             const user = await User.update({ id: userId }, params).fetch()
-            return res.redirect('/user/dashboard')
+            return res.redirect('/user')
         } catch (error) {
-            return res.status(500).send({ error: 'Database error' });
+            return res.view('500');;
         }
 
     },
@@ -76,11 +77,11 @@ module.exports = {
             const passwordMatch = await sails.helpers.cipherCompare(params.password, user.password);
             if (!passwordMatch) { return res.status(400).send({ error: 'Senha incorreta' }); }
 
-            return res.redirect('/user/dashboard');
+            return res.redirect('/user');
 
         } catch (error) {
             sails.log(error)
-            return res.status(500).send({ error: 'Database error' });
+            return res.view('500');;
         }
     }
 };

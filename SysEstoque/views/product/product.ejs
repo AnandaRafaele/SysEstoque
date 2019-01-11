@@ -49,11 +49,7 @@
                 <%= product.description %>
               </td>
               <td>
-                <button onclick="editUser('<%= product.id %>', '<%= product.name %>','<%= product.serialNumber %>', '<%= product.category.name %>', '<%= product.brand %>', '<%= product.supplier.tradeName %>'), '<%= product.description %>'"
-                  class="btn btn-icons btn-rounded btn-outline-warning" data-toggle="modal" data-target="#modalEdit"><i
-                    class="mdi mdi-pencil" data-name="<%= product.name%>" data-email="<%= product.email%>"
-                    data-phoneNumber="<%= product.phoneNumber%>" data-status="<%= product.status%>" data-accessLevel="<%= product.accessLevel%>"
-                    data-id="<%= product.id%>"></i></button>
+                <button onclick="editUser('<%= product.id %>', '<%= product.name %>','<%= product.serialNumber %>', '<%= product.category.name %>', '<%= product.brand %>', '<%= product.supplier.tradeName %>'), '<%= product.description %>'"></i></button>
 
                 <button class="btn btn-icons btn-rounded btn-outline-danger" type="button" onClick="deleteUser('<%= product.id %>')"><i
                     class="mdi mdi-delete"></i></button>

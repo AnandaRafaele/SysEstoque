@@ -48,14 +48,7 @@
                   <button onclick="editStock('<%= stock.id %>', '<%= stock.product.name %>',
                     '<%= stock.quantity %>', '<%= stock.valUnit %>', '<%= stock.valTotal %>',
                     '<%= stock.minQuantity %>')" 
-                    class="btn btn-icons btn-rounded btn-outline-warning" data-toggle="modal" data-target="#modalEdit"
-                    data-product="<%= stock.product.name%>"
-                    data-quantity="<%= stock.quantity%>"
-                    data-valUnit="<%= stock.valUnit%>"
-                    data-valTotal="<%= stock.valTotal%>"
-                    data-minQuantity="<%= stock.minQuantity%>"
-                    data-id="<%= stock.id%>"
-                    ><i class="mdi mdi-pencil"></i></button>
+                    class="btn btn-icons btn-rounded btn-outline-warning" data-toggle="modal" data-target="#modalEdit"><i class="mdi mdi-pencil"></i></button>
                   
                   <button class="btn btn-icons btn-rounded btn-outline-danger" type="button" onClick="deleteStock('<%= stock.id %>')"><i
                     class="mdi mdi-delete"></i></button>
@@ -99,13 +92,13 @@
               <div class="col-lg-6">
                 <div class="form-group">
                   <label for="addQuantity">Quantidade</label>
-                  <input type="number" class="form-control" id="addQuantity" name="quantity" placeholder="Ex.: 150">
+                  <input type="number" class="form-control quantity" id="addQuantity" name="quantity" placeholder="Ex.: 150">
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="form-group">
                   <label for="addValUnit">Valor Unitário</label>
-                  <input type="text" class="form-control" name="valUnit" id="addValUnit" onblur="calcular();" placeholder="Ex.: 500,00">
+                  <input type="text" class="form-control valUnit" name="valUnit" id="addValUnit" onblur="calcular();" placeholder="Ex.: 500,00">
                 </div>
               </div>
             </div>
@@ -119,7 +112,7 @@
               <div class="col-lg-6">
                 <div class="form-group">
                   <label for="addValTotal">Valor Total</label>
-                  <input type="text" class="form-control" name="valTotal" id="addValTotal" placeholder="Valor total">
+                  <input type="text" class="form-control valTotal" name="valTotal" id="addValTotal" placeholder="Valor total">
                 </div>
               </div>
             </div>
@@ -140,58 +133,61 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Edição de Usuário</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Cadastro de Estoque</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <form class="forms-sample" method="POST" action="" id="editForm">
+          <form class="forms-sample" method="POST" action="/stock/create">
             <div class="row">
               <div class="col-lg-6">
                 <div class="form-group">
-                  <label for="editName">Nome</label>
-                  <input type="text" class="form-control" id="editName" name="name" placeholder="Digite seu nome">
+                  <label for="editProduct">Produto</label>
+                  <select class="form-control" id="editProduct" name="product">
+                    <% products.forEach(function(product){ %>
+                      <option value="<%= product.id %>">
+                          <%= product.name %>
+                        </option>
+                    <% }) %>
+                    </select>
                 </div>
               </div>
-              <div class="col-lg-6">
-                <div class="form-group">
-                  <label for="editPhone">Telefone</label>
-                  <input type="tel" class="form-control" name="phoneNumber" id="editPhone" placeholder="Digite seu telefone">
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="editEmail">Email</label>
-              <input type="email" class="form-control" name="email" id="editEmail" placeholder="Digite seu email">
             </div>
             <div class="row">
               <div class="col-lg-6">
                 <div class="form-group">
-                  <label for="editStatus">Status</label>
-                  <select class="form-control" id="editStatus" name="status">
-                    <option value="activated" selected>Ativo</option>
-                    <option value="disabled">Pendente</option>
-                    <option value="blocked">Bloqueado</option>
-                  </select>
+                  <label for="editQuantity">Quantidade</label>
+                  <input type="number" class="form-control" id="editQuantity" name="quantity" placeholder="Ex.: 150">
                 </div>
               </div>
               <div class="col-lg-6">
                 <div class="form-group">
-                  <label for="editLevel">Nível de Acesso</label>
-                  <select class="form-control" id="editLevel" name="accessLevel">
-                    <option value="employee" selected>Empregado</option>
-                    <option value="administrator">Administrador</option>
-                  </select>
+                  <label for="editValUnit">Valor Unitário</label>
+                  <input type="text" class="form-control" name="valUnit" id="editValUnit" onblur="calcular();" placeholder="Ex.: 500,00">
                 </div>
               </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-              <button type="submit" id="editBtn" class="btn btn-primary">Alterar</button>
+            <div class="row">
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="editMinQuantity">Quantidade mínima</label>
+                  <input type="number" class="form-control" name="minQuantity" id="editMinQuantity" placeholder="Ex.: 100,00">
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label for="editValTotal">Valor Total</label>
+                  <input type="text" class="form-control" name="valTotal" id="editValTotal" placeholder="Valor total">
+                </div>
+              </div>
             </div>
-          </form>
         </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </div>
+        </form>
       </div>
     </div>
   </div>
@@ -199,14 +195,14 @@
   <script>
 
     function calcular() {
-      var n1 = $('#addQuantity').val();
-      var n2 = $('#addValUnit').val();
+      var n1 = $('.quantity').val();
+      var n2 = $('.valUnit').val();
       if (n2.match(/,/)) {
         n2 = n2.replace(",", ".");
       }
       soma = parseFloat(parseInt(n1) * parseFloat(n2).toFixed(2)).toFixed(2);
       console.log(soma)
-      $('#addValTotal').val(soma);
+      $('.valTotal').val(soma);
     }
 
     function deleteStock(id) {
@@ -219,12 +215,13 @@
       }
     }
   
-    function editStock(id, name, email, phoneNumber, status, accessLevel){
-      $('#editName').val(name);
-      $('#editEmail').val(email);
-      $('#editPhone').val(phoneNumber);
-      $('#editStatus').val(status);
-      $('#editLevel').val(accessLevel);
+    function editStock(id, product, quantity, valUnit, valTotal, minQuantity){
+      $('#editProduct').val(product);
+      $('#editQuantity').val(quantity);
+      $('#editValUnit').val(valUnit);
+      $('#editValTotal').val(valTotal);
+      $('#editMinQuantity').val(minQuantity);
+      
   
       $('#editBtn').click(function(){
         document.getElementById('editForm').setAttribute("action", "/stock/update/"+id)

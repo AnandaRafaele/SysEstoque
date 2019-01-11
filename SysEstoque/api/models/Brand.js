@@ -1,7 +1,7 @@
 /**
- * GoodsReceiptItens.js
+ * Brand.js
  *
- * @description :: A model definition.  Represents a database table/collection/etc.
+ * @description :: A model definition represents a database table/collection.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
  */
 
@@ -13,13 +13,14 @@ module.exports = {
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
 
-    quantity: {
-      type: 'number'
+    name: {
+      type: 'string',
+      required: true
     },
-
-    unitCost: {
-      type: 'number'
-    },
+    
+    category: {
+      model: 'category'
+    }
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
@@ -30,15 +31,6 @@ module.exports = {
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
 
-    products: {
-      via: 'goodsReceiptItens',
-      collection: 'product'
-    },
-
-    goodsReceipts: {
-      via: 'goodsReceiptItens',
-      collection: 'goodsReceipt'
-    },
   },
 
 };
